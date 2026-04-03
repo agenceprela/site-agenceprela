@@ -1,34 +1,155 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+/* App-specific styles */
+
+/* Hero background overlay */
+.hero-bg {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+.hero-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(250,250,250,0.85) 0%, rgba(250,250,250,0.95) 100%);
+  z-index: 0;
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+.hero-content {
+  position: relative;
+  z-index: 1;
 }
 
-.App-link {
-    color: #61dafb;
+/* Service card special styling */
+.service-card {
+  position: relative;
+  overflow: hidden;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 0;
+  background: var(--brand-primary);
+  transition: height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.service-card:hover::before {
+  height: 100%;
+}
+
+/* Referent card */
+.referent-card {
+  border-left: 2px solid var(--brand-primary);
+  padding-left: 1.5rem;
+}
+
+/* Portfolio grid */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .portfolio-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+.portfolio-item:first-child {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+/* Contact section background */
+.contact-section {
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+}
+
+/* Profile image */
+.profile-image {
+  border: 3px solid var(--brand-primary);
+  box-shadow: 0 8px 32px rgba(197, 168, 128, 0.2);
+}
+
+/* Navigation active state */
+.nav-link.active {
+  color: var(--brand-primary);
+}
+
+/* Footer */
+.footer {
+  background-color: var(--brand-dark);
+  color: var(--text-on-dark);
+}
+
+/* Testimonial quote */
+.testimonial-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.5rem;
+  line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+  .testimonial-quote {
+    font-size: 2rem;
+  }
+}
+
+/* Payment section */
+.payment-card {
+  background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+  border: 1px solid var(--border-light);
+}
+
+/* Smooth reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Mobile menu */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  height: 100vh;
+  background: var(--bg-tertiary);
+  transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 100;
+}
+
+.mobile-menu.open {
+  right: 0;
+}
+
+/* Separator line */
+.separator {
+  width: 60px;
+  height: 1px;
+  background: var(--brand-primary);
+}
+
+/* Label styling */
+.label-elegant {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--brand-primary);
 }
