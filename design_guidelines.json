@@ -1,0 +1,163 @@
+{
+  "project_context": {
+    "domain": "Building Engineering / Architecture Agency (Agence Prela)",
+    "primary_theme": "LIGHT",
+    "archetype": "Archetype 5 (Jewel & Luxury) / Light Variant - 'Light Refined Elegance'",
+    "mood": "Frais, classe, élégant et fluide",
+    "key_elements": [
+      "Hero section with company presentation",
+      "Services bento/cards",
+      "External Stripe payment buttons",
+      "Customer testimonials marquee banner",
+      "Referents/Partners showcase",
+      "Portfolio gallery (high quality fluid)",
+      "Contact section with social links and profile photo"
+    ]
+  },
+  "typography": {
+    "headings": {
+      "family": "Cormorant Garamond, serif",
+      "weights": ["300", "400", "600"],
+      "styling": "Elegant, tight tracking (-0.02em), refined.",
+      "sizes": {
+        "h1": "text-5xl md:text-6xl+",
+        "h2": "text-3xl md:text-4xl",
+        "h3": "text-2xl"
+      }
+    },
+    "body": {
+      "family": "Outfit, sans-serif",
+      "weights": ["300", "400", "500"],
+      "styling": "Clean, highly legible, modern contrast to the serif headings.",
+      "sizes": {
+        "base": "text-base md:text-lg",
+        "small": "text-sm",
+        "labels": "text-xs tracking-widest uppercase"
+      }
+    }
+  },
+  "colors": {
+    "background": {
+      "primary": "#FAFAFA",
+      "secondary": "#F3F2F0",
+      "tertiary": "#FFFFFF"
+    },
+    "text": {
+      "primary": "#1C1C1C",
+      "secondary": "#595959",
+      "muted": "#8A8A8A",
+      "on_dark": "#FFFFFF"
+    },
+    "brand": {
+      "primary": "#C5A880",
+      "primary_hover": "#B3956D",
+      "accent": "#E6DED5",
+      "dark_charcoal": "#2A2A2A"
+    },
+    "borders": {
+      "light": "rgba(28, 28, 28, 0.1)",
+      "medium": "rgba(28, 28, 28, 0.2)"
+    }
+  },
+  "layout_and_spacing": {
+    "generous_spacing": "Use 2x normal spacing (p-12, py-24) to create a luxurious, breathable feel.",
+    "bento_grids": "For services, use an asymmetrical grid (e.g., md:grid-cols-12) to create visual tension and interest.",
+    "container": "Max-w-7xl mx-auto, large horizontal paddings (px-6 md:px-12).",
+    "borders": "Use 1px delicate borders (border-[#1C1C1C]/10) rather than heavy drop shadows."
+  },
+  "components": {
+    "hero": {
+      "type": "Split layout or large minimal typography over subtle abstract background.",
+      "overlay": "If using image, white/20 glassmorphism overlay to ensure text contrast while maintaining brightness."
+    },
+    "buttons": {
+      "primary": "Solid dark charcoal background (#2A2A2A), white text, rounded-none or very slight rounded (rounded-sm), hover:bg-brand-primary (#C5A880) with smooth transition.",
+      "secondary": "Outline button with 1px border (#2A2A2A), transparent background, hover:bg-[#F3F2F0].",
+      "stripe_payments": "Must be clearly marked as payment CTAs. Elegant but highly visible. Use primary button style."
+    },
+    "cards": {
+      "style": "Neumorphic/Glass mixed: Solid #FFFFFF background with 1px border, extremely soft ambient shadow (shadow-[0_8px_32px_rgba(0,0,0,0.04)]). Hover: slight upward translation (-translate-y-1)."
+    },
+    "navigation": {
+      "header": "Crystal Glass style: bg-white/70, backdrop-blur-xl, border-b border-black/5, sticky top-0 z-50.",
+      "links": "Outfit font, text-sm, tracking-wide, hover:text-[#C5A880]"
+    },
+    "testimonials_banner": {
+      "style": "The 'Editorial Ribbon'. Full width marquee, very slow speed. Cormorant Garamond font, large text (text-3xl), massive gaps between items (gap-32)."
+    }
+  },
+  "motion_and_interaction": {
+    "scroll": "MUST use lenis library for smooth momentum scrolling. It's critical for the 'fluid' requirement.",
+    "animations": "Framer Motion for soft fade-in-up on scroll (y: 20, opacity: 0 -> y: 0, opacity: 1, duration: 0.8, ease: [0.16, 1, 0.3, 1]).",
+    "hover": "Subtle scale-up (1.02) on portfolio images. Slow transitions (duration-300 to 500)."
+  },
+  "accessibility_and_testing": {
+    "contrast": "Ensure all text meets WCAG AA standards. Charcoal (#1C1C1C) on #FAFAFA is highly readable.",
+    "test_attributes": "Add data-testid to all interactive elements (buttons, links, form inputs)."
+  },
+  "media_assets": {
+    "brand_logo": {
+      "url": "https://customer-assets.emergentagent.com/job_9f4d5ced-1252-4d4d-84b4-8f449859b862/artifacts/xvphhiqe_LOGO.png",
+      "description": "Agence Prela Official Logo",
+      "usage": "Header, Footer"
+    },
+    "hero_background": {
+      "url": "https://static.prod-images.emergentagent.com/jobs/9f4d5ced-1252-4d4d-84b4-8f449859b862/images/44470d4692f1ef36d4ecde18df28e14401b93f1e2ee45a814e1a887fb107b401.png",
+      "description": "Abstract champagne elegant background",
+      "usage": "Hero section background, subtle opacity"
+    },
+    "inspiration_reference": {
+      "url": "https://customer-assets.emergentagent.com/job_9f4d5ced-1252-4d4d-84b4-8f449859b862/artifacts/fxotuyyf_WhatsApp%20Image%202026-04-03%20at%2014.03.51.jpeg",
+      "description": "Ring photo to guide the luxury/refined aesthetic",
+      "usage": "Do not display on UI directly, purely for thematic alignment (champagne/gold/white)."
+    },
+    "profile_photo": {
+      "url": "https://customer-assets.emergentagent.com/job_9f4d5ced-1252-4d4d-84b4-8f449859b862/artifacts/z16q6siu_P_20191016_104333.jpg",
+      "description": "Véronique Mazeau - Founder Profile Photo",
+      "usage": "Contact section, 'About' or 'Founder' snippet"
+    },
+    "portfolio_images": [
+      {
+        "url": "https://customer-assets.emergentagent.com/job_9f4d5ced-1252-4d4d-84b4-8f449859b862/artifacts/6pm6fb1q_CHT%20DST.jpg",
+        "description": "Changement de destination project image",
+        "usage": "Portfolio gallery item 1"
+      },
+      {
+        "url": "https://customer-assets.emergentagent.com/job_9f4d5ced-1252-4d4d-84b4-8f449859b862/artifacts/jr0at7lv_permis%20de%20construire.png",
+        "description": "Permis de construire project image",
+        "usage": "Portfolio gallery item 2"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1766603636700-e9d80473f40f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzV8MHwxfHNlYXJjaHwyfHxlbGVnYW50JTIwbW9kZXJuJTIwYXJjaGl0ZWN0dXJlJTIwZXh0ZXJpb3IlMjBob3VzZXxlbnwwfHx8fDE3NzUyMjQ0MDd8MA&ixlib=rb-4.1.0&q=85",
+        "description": "Modern architecture exterior",
+        "usage": "Portfolio gallery item 3"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1635006459494-c9b9665a666e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzV8MHwxfHNlYXJjaHwxfHxlbGVnYW50JTIwbW9kZXJuJTIwYXJjaGl0ZWN0dXJlJTIwZXh0ZXJpb3IlMjBob3VzZXxlbnwwfHx8fDE3NzUyMjQ0MDd8MA&ixlib=rb-4.1.0&q=85",
+        "description": "Modern architecture detail",
+        "usage": "Portfolio gallery item 4"
+      }
+    ],
+    "testimonial_portraits": [
+      {
+        "url": "https://images.pexels.com/photos/30004323/pexels-photo-30004323.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Testimonial person 1",
+        "usage": "Customer reviews banner"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1762522926157-bcc04bf0b10a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzF8MHwxfHNlYXJjaHwyfHxwcm9mZXNzaW9uYWwlMjBwb3J0cmFpdCUyMGhlYWRzaG90fGVufDB8fHx8MTc3NTIyNDQyNnww&ixlib=rb-4.1.0&q=85",
+        "description": "Testimonial person 2",
+        "usage": "Customer reviews banner"
+      }
+    ]
+  },
+  "instructions_to_main_agent": [
+    "Do NOT use 'Inter', 'Roboto', 'Open Sans', etc., for headings. Use Cormorant Garamond for headings and Outfit for body. Include them from Google Fonts in index.html.",
+    "Avoid typical SaaS cards. Use flat, sharp or slightly rounded elements with a 1px border (#1C1C1C opacity 10%) and very soft ambient shadow.",
+    "Keep spacing generous (e.g., py-24, gap-12). It must feel breathable and 'fluid'.",
+    "Include a 'testimonal' marquee using an infinite scroll library (e.g., react-fast-marquee) or Framer Motion.",
+    "Payment links to Stripe should be prominent and styled beautifully. Do not bury them.",
+    "Ensure the layout feels 'Godly' - asymmetrical, high information density but highly skimmable, image-led storytelling.",
+    "Map provided assets strictly. Do not use generic placeholders. Add data-testid to all CTA buttons."
+  ]
+}
