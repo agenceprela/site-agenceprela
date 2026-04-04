@@ -42,8 +42,8 @@ const ASSETS = {
     "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/fu6yknga_projet%20de%20construction.jpg"
   ],
   decorative: [
-    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/uc8y80ja_Dommes%20.jpg",
-    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/kvj6l336_san%20antonino%20%281%29.JPG",
+    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/ot4nrwb9_CORSE%20%2816%29.jpg",
+    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/cuq1vqm1_466069785_9041183802567501_7608671728850779865_n.jpg",
     "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/oihlevlo_ST%20AMAND%20DE%20COLY%20%2858%29.jpg",
     "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/gsk2x81n_pierre%20Maurens%20%281%29.jpg"
   ]
@@ -139,7 +139,7 @@ const REFERENTS = [
     ]
   },
   {
-    category: "AMO & Coordination",
+    category: "AMO, Coordination & Consultant Chantier",
     experts: [
       {
         name: "François-Joseph Antonini",
@@ -149,12 +149,7 @@ const REFERENTS = [
         note: "Interlocuteur local en Corse",
         experience: "40 ans d'expérience",
         contact: "decoconcept1@gmail.com"
-      }
-    ]
-  },
-  {
-    category: "Consultant Chantier",
-    experts: [
+      },
       {
         name: "Laurent Faure",
         location: "Périgord Pourpre",
