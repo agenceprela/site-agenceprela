@@ -285,15 +285,6 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* CTA Button */}
-          <a
-            href="#contact"
-            className="hidden md:block btn-primary"
-            data-testid="header-cta"
-          >
-            Demander un devis
-          </a>
-
           {/* Mobile Menu Button */}
           <button
             className="md:hidden p-2"
