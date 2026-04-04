@@ -48,10 +48,11 @@ const ASSETS = {
   ],
   decorative: [
     "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/ot4nrwb9_CORSE%20%2816%29.jpg",
-    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/cuq1vqm1_466069785_9041183802567501_7608671728850779865_n.jpg",
+    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/gsk2x81n_pierre%20Maurens%20%281%29.jpg",
     "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/oihlevlo_ST%20AMAND%20DE%20COLY%20%2858%29.jpg",
-    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/i7bte9kj_466158579_9042680795751135_8232406991835141836_n.jpg"
-  ]
+    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/cuq1vqm1_466069785_9041183802567501_7608671728850779865_n.jpg"
+  ],
+  skyBanner: "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/zw5fi8pm_466343022_9042654035753811_3421513272952920549_n.jpg"
 };
 
 // Jalon URL
@@ -257,7 +258,7 @@ const Header = () => {
     { label: "Services", href: "#services" },
     { label: "Paiement", href: "#paiement" },
     { label: "Portfolio", href: "#portfolio" },
-    { label: "Référents", href: "#referents" },
+    { label: "FAQ", href: "#faq" },
     { label: "Contact", href: "#contact" }
   ];
 
@@ -397,43 +398,27 @@ const HeroSection = () => {
             </motion.div>
           </motion.div>
 
-          {/* Profile Card */}
+          {/* Profile Card - Simplified */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="order-1 md:order-2 flex justify-center md:justify-end"
           >
-            <div className="card-elegant p-6 md:p-8 max-w-sm">
-              <div className="flex items-center gap-4 mb-4">
-                <img 
-                  src={ASSETS.profilePhoto} 
-                  alt={CONTACT.name}
-                  className="w-20 h-20 rounded-full object-cover profile-image"
-                />
-                <div>
-                  <h3 className="font-heading text-xl font-semibold">{CONTACT.name}</h3>
-                  <p className="font-body text-sm text-[#8A8A8A]">{CONTACT.locations}</p>
-                </div>
-              </div>
-              <div className="space-y-2 text-sm">
-                <a href={`tel:${CONTACT.phone.replace(/\s/g, '')}`} className="flex items-center gap-2 text-[#595959] hover:text-[#C5A880] transition-colors">
-                  <Phone size={16} />
-                  {CONTACT.phone}
-                </a>
-                <a href={`mailto:${CONTACT.email}`} className="flex items-center gap-2 text-[#595959] hover:text-[#C5A880] transition-colors">
-                  <Mail size={16} />
-                  {CONTACT.email}
-                </a>
-              </div>
-              <div className="flex gap-4 mt-4 pt-4 border-t border-[#1C1C1C]/10">
-                <a href={CONTACT.youtube} target="_blank" rel="noopener noreferrer" className="text-[#595959] hover:text-[#C5A880] transition-colors" data-testid="social-youtube">
-                  <Youtube size={20} />
-                </a>
-                <a href={CONTACT.instagram} target="_blank" rel="noopener noreferrer" className="text-[#595959] hover:text-[#C5A880] transition-colors" data-testid="social-instagram">
-                  <Instagram size={20} />
-                </a>
-              </div>
+            <div className="card-elegant p-6 md:p-8 max-w-sm text-center">
+              <img 
+                src={ASSETS.profilePhoto} 
+                alt={CONTACT.name}
+                className="w-24 h-24 rounded-full object-cover profile-image mx-auto mb-4"
+              />
+              <h3 className="font-heading text-xl font-semibold">{CONTACT.name}</h3>
+              <p className="font-body text-sm text-[#8A8A8A] mb-4">{CONTACT.locations}</p>
+              <a 
+                href="#contact" 
+                className="text-sm text-[#C5A880] hover:underline inline-flex items-center gap-1"
+              >
+                Me contacter <ArrowRight size={14} />
+              </a>
             </div>
           </motion.div>
         </div>
@@ -579,6 +564,52 @@ const ServicesSection = () => {
   );
 };
 
+// Process Infographic Section
+const ProcessSection = () => {
+  const steps = [
+    { number: "01", title: "Clarification", desc: "Jalon gratuit pour définir vos besoins", color: "#C5A880" },
+    { number: "02", title: "Consultation", desc: "Échange personnalisé (1h ou Aplomb)", color: "#B3956D" },
+    { number: "03", title: "Étude", desc: "Analyse réglementaire complète", color: "#A08060" },
+    { number: "04", title: "Livraison", desc: "Dossiers et visuels 3D", color: "#8D6B50" }
+  ];
+
+  return (
+    <section className="py-16 bg-gradient-to-r from-[#F3F2F0] to-[#FAFAFA]" data-testid="process-section">
+      <div className="max-w-6xl mx-auto px-6 md:px-12">
+        <AnimatedSection className="text-center mb-12">
+          <span className="label-elegant">Comment ça marche</span>
+          <h2 className="font-heading text-2xl md:text-3xl font-light mt-4">Votre parcours</h2>
+        </AnimatedSection>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {steps.map((step, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.15, duration: 0.5 }}
+              className="text-center"
+            >
+              <div 
+                className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-white font-heading text-xl"
+                style={{ backgroundColor: step.color }}
+              >
+                {step.number}
+              </div>
+              <h4 className="font-heading text-lg font-semibold mb-2">{step.title}</h4>
+              <p className="font-body text-sm text-[#595959]">{step.desc}</p>
+              {index < steps.length - 1 && (
+                <div className="hidden md:block absolute top-8 right-0 w-full h-0.5 bg-[#E6DED5]" />
+              )}
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
 // Testimonials Marquee Section (Real Google Reviews)
 const TestimonialsSection = () => {
   return (
@@ -610,6 +641,26 @@ const TestimonialsSection = () => {
           </div>
         ))}
       </Marquee>
+    </section>
+  );
+};
+
+// Sky Banner Section
+const SkyBannerSection = () => {
+  return (
+    <section className="relative h-48 md:h-64 overflow-hidden" data-testid="sky-banner">
+      <img 
+        src={ASSETS.skyBanner} 
+        alt="Ciel et liberté"
+        className="w-full h-full object-cover"
+      />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent flex items-center">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <p className="font-heading text-2xl md:text-3xl text-white italic max-w-lg">
+            Vos projets méritent de prendre leur envol
+          </p>
+        </div>
+      </div>
     </section>
   );
 };
@@ -930,6 +981,75 @@ const TerroirSection = () => {
             </motion.div>
           ))}
         </motion.div>
+      </div>
+    </section>
+  );
+};
+
+// FAQ Section
+const FAQSection = () => {
+  const [openIndex, setOpenIndex] = useState(null);
+  
+  const faqs = [
+    {
+      question: "Quelle est la différence entre Consultation et Aplomb ?",
+      answer: "La Consultation (120€/1h) est un échange libre pour analyser votre projet. Aplomb (149€) est une vérification complète des contraintes réglementaires (PLU, taxes, aides) avec un compte-rendu PDF détaillé."
+    },
+    {
+      question: "Puis-je signer moi-même mon permis de construire ?",
+      answer: "Oui, pour les projets jusqu'à 150 m² de surface de plancher (SDP). Au-delà, le recours à un architecte est obligatoire. Je vous accompagne dans la préparation du dossier."
+    },
+    {
+      question: "Comment fonctionne Jalon ?",
+      answer: "Jalon est un outil gratuit de clarification de projet. En quelques minutes, vous identifiez vos besoins et obtenez une synthèse claire. Vous pouvez ensuite approfondir avec une consultation Aplomb."
+    },
+    {
+      question: "Les achats sont-ils déductibles de la mission complète ?",
+      answer: "Oui ! Chaque achat effectué en amont (Consultation, Aplomb) est déduit du montant de la Mission complète si vous décidez de poursuivre l'accompagnement global."
+    },
+    {
+      question: "Intervenez-vous partout en France ?",
+      answer: "Basée en Corse et en Périgord Pourpre, j'interviens à distance sur toute la France pour les consultations et études. Mon réseau de référents locaux peut prendre le relai sur le terrain."
+    }
+  ];
+
+  return (
+    <section id="faq" className="section-padding bg-[#FAFAFA]" data-testid="faq-section">
+      <div className="max-w-3xl mx-auto">
+        <AnimatedSection className="text-center mb-12">
+          <span className="label-elegant">Questions fréquentes</span>
+          <h2 className="font-heading text-2xl md:text-3xl font-light mt-4">FAQ</h2>
+          <div className="separator mx-auto mt-6" />
+        </AnimatedSection>
+
+        <div className="space-y-3">
+          {faqs.map((faq, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="bg-white border border-[#E6DED5] rounded-sm overflow-hidden"
+            >
+              <button
+                onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-[#F3F2F0] transition-colors"
+              >
+                <span className="font-body font-medium text-[#1C1C1C]">{faq.question}</span>
+                <ChevronRight 
+                  size={20} 
+                  className={`text-[#C5A880] transition-transform ${openIndex === index ? 'rotate-90' : ''}`}
+                />
+              </button>
+              {openIndex === index && (
+                <div className="px-6 pb-4">
+                  <p className="font-body text-sm text-[#595959] leading-relaxed">{faq.answer}</p>
+                </div>
+              )}
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -1259,12 +1379,15 @@ function App() {
       <main>
         <HeroSection />
         <AboutSection />
+        <ProcessSection />
         <ServicesSection />
         <TestimonialsSection />
+        <SkyBannerSection />
         <PaymentSection />
         <PortfolioSection />
         <ReferentsSection />
         <TerroirSection />
+        <FAQSection />
         <ContactSection />
       </main>
       <Footer />
