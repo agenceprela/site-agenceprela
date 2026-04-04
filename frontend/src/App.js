@@ -21,9 +21,14 @@ import {
   ArrowRight,
   Star,
   Info,
-  Briefcase
+  Briefcase,
+  Accessibility,
+  ZoomIn,
+  ZoomOut,
+  Moon,
+  Sun
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
 // Assets
 const ASSETS = {
@@ -45,7 +50,7 @@ const ASSETS = {
     "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/ot4nrwb9_CORSE%20%2816%29.jpg",
     "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/cuq1vqm1_466069785_9041183802567501_7608671728850779865_n.jpg",
     "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/oihlevlo_ST%20AMAND%20DE%20COLY%20%2858%29.jpg",
-    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/gsk2x81n_pierre%20Maurens%20%281%29.jpg"
+    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/i7bte9kj_466158579_9042680795751135_8232406991835141836_n.jpg"
   ]
 };
 
@@ -628,6 +633,7 @@ const PaymentSection = () => {
     },
     {
       title: "Acompte Mission Complète",
+      price: "100 €",
       description: "Premier versement pour démarrer votre accompagnement global (Avant-projet sommaire).",
       link: STRIPE_LINKS.acompteMission,
       testId: "stripe-acompte"
@@ -1121,6 +1127,108 @@ const Footer = () => {
   );
 };
 
+// Accessibility Widget (PMR)
+const AccessibilityWidget = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [fontSize, setFontSize] = useState(100);
+  const [highContrast, setHighContrast] = useState(false);
+
+  const increaseFontSize = useCallback(() => {
+    if (fontSize < 150) {
+      const newSize = fontSize + 10;
+      setFontSize(newSize);
+      document.documentElement.style.fontSize = `${newSize}%`;
+    }
+  }, [fontSize]);
+
+  const decreaseFontSize = useCallback(() => {
+    if (fontSize > 80) {
+      const newSize = fontSize - 10;
+      setFontSize(newSize);
+      document.documentElement.style.fontSize = `${newSize}%`;
+    }
+  }, [fontSize]);
+
+  const resetFontSize = useCallback(() => {
+    setFontSize(100);
+    document.documentElement.style.fontSize = '100%';
+  }, []);
+
+  const toggleContrast = useCallback(() => {
+    setHighContrast(!highContrast);
+    if (!highContrast) {
+      document.body.classList.add('high-contrast');
+    } else {
+      document.body.classList.remove('high-contrast');
+    }
+  }, [highContrast]);
+
+  return (
+    <div className="fixed bottom-4 left-4 z-40" data-testid="accessibility-widget">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-12 h-12 bg-[#2A2A2A] text-white rounded-full flex items-center justify-center shadow-lg hover:bg-[#C5A880] transition-colors"
+        aria-label="Options d'accessibilité"
+        title="Accessibilité"
+      >
+        <Accessibility size={24} />
+      </button>
+
+      {isOpen && (
+        <div className="absolute bottom-16 left-0 bg-white rounded-lg shadow-xl p-4 min-w-[200px] border border-[#E6DED5]">
+          <p className="font-body text-sm font-semibold text-[#1C1C1C] mb-3">Accessibilité</p>
+          
+          <div className="space-y-3">
+            {/* Font size controls */}
+            <div>
+              <p className="text-xs text-[#8A8A8A] mb-2">Taille du texte</p>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={decreaseFontSize}
+                  className="w-8 h-8 bg-[#F3F2F0] rounded flex items-center justify-center hover:bg-[#E6DED5] transition-colors"
+                  aria-label="Réduire la taille du texte"
+                >
+                  <ZoomOut size={16} />
+                </button>
+                <span className="text-xs text-[#595959] w-10 text-center">{fontSize}%</span>
+                <button
+                  onClick={increaseFontSize}
+                  className="w-8 h-8 bg-[#F3F2F0] rounded flex items-center justify-center hover:bg-[#E6DED5] transition-colors"
+                  aria-label="Augmenter la taille du texte"
+                >
+                  <ZoomIn size={16} />
+                </button>
+                <button
+                  onClick={resetFontSize}
+                  className="text-xs text-[#C5A880] hover:underline ml-2"
+                >
+                  Reset
+                </button>
+              </div>
+            </div>
+
+            {/* Contrast toggle */}
+            <div>
+              <p className="text-xs text-[#8A8A8A] mb-2">Contraste</p>
+              <button
+                onClick={toggleContrast}
+                className={`flex items-center gap-2 px-3 py-2 rounded text-sm transition-colors ${
+                  highContrast 
+                    ? 'bg-[#2A2A2A] text-white' 
+                    : 'bg-[#F3F2F0] text-[#595959] hover:bg-[#E6DED5]'
+                }`}
+              >
+                {highContrast ? <Sun size={16} /> : <Moon size={16} />}
+                {highContrast ? 'Mode normal' : 'Contraste élevé'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
 // Main App
 function App() {
   useEffect(() => {
@@ -1160,6 +1268,7 @@ function App() {
         <ContactSection />
       </main>
       <Footer />
+      <AccessibilityWidget />
     </div>
   );
 }

@@ -153,3 +153,37 @@
   text-transform: uppercase;
   color: var(--brand-primary);
 }
+
+/* High contrast mode for accessibility (PMR) */
+body.high-contrast {
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F0F0F0;
+  --bg-tertiary: #FFFFFF;
+  --text-primary: #000000;
+  --text-secondary: #333333;
+  --text-muted: #555555;
+  --brand-primary: #8B6914;
+  --border-light: rgba(0, 0, 0, 0.3);
+  --border-medium: rgba(0, 0, 0, 0.5);
+}
+
+body.high-contrast .card-elegant,
+body.high-contrast .payment-card,
+body.high-contrast .referent-card {
+  border: 2px solid #000000;
+}
+
+body.high-contrast .btn-primary {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+body.high-contrast .btn-secondary {
+  border: 2px solid #000000;
+  color: #000000;
+}
+
+body.high-contrast .testimonial-quote,
+body.high-contrast .font-heading {
+  color: #000000;
+}
