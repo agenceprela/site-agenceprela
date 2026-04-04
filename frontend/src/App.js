@@ -39,9 +39,13 @@ const ASSETS = {
     "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/sithft8j_EXTENSION.png",
     "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/xp04tq1m_Gemini_Generated_Image_ppghs3ppghs3ppgh%281%29.png",
     "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/ish9kir5_ANGT%20EXT.jpg",
-    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/p8lk95yu_4%20lots.jpg"
+    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/p8lk95yu_4%20lots.jpg",
+    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/fu6yknga_projet%20de%20construction.jpg"
   ]
 };
+
+// Jalon URL
+const JALON_URL = "https://fanciful-toffee-243ec4.netlify.app/";
 
 // Stripe Payment Links
 const STRIPE_LINKS = {
@@ -82,9 +86,10 @@ const SERVICES = [
     id: 3,
     title: "Jalon",
     subtitle: "Gratuit",
-    description: "Outil de suivi de projet accessible gratuitement pour structurer les étapes clés, les décisions et l'avancement de vos dossiers.",
-    note: "Utilisable en auto‑gérance après création de compte, sans obligation de paiement.",
-    icon: CheckCircle2
+    description: "Outil de clarification de projet accessible gratuitement. Identifiez vos besoins, comprenez les contraintes et obtenez une synthèse claire de votre situation.",
+    note: "Accès libre, sans obligation. Possibilité d'enregistrer votre synthèse en PDF.",
+    icon: CheckCircle2,
+    link: "https://fanciful-toffee-243ec4.netlify.app/"
   },
   {
     id: 4,
@@ -517,6 +522,18 @@ const ServicesSection = () => {
                   </div>
                   <p className="font-body text-[#595959] mb-4 leading-relaxed">{service.description}</p>
                   <p className="font-body text-sm text-[#8A8A8A] italic">{service.note}</p>
+                  {service.link && (
+                    <a 
+                      href={service.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-primary inline-flex items-center gap-2 mt-4"
+                      data-testid="jalon-cta"
+                    >
+                      Accéder à Jalon
+                      <ExternalLink size={16} />
+                    </a>
+                  )}
                 </div>
               </div>
             </motion.div>
@@ -674,8 +691,10 @@ const PaymentSection = () => {
   );
 };
 
-// Portfolio Section - Simple and fluid
+// Portfolio Section with Lightbox
 const PortfolioSection = () => {
+  const [selectedImage, setSelectedImage] = useState(null);
+
   return (
     <section id="portfolio" className="section-padding bg-[#F3F2F0]" data-testid="portfolio-section">
       <div className="max-w-7xl mx-auto">
@@ -696,8 +715,9 @@ const PortfolioSection = () => {
             <motion.div
               key={index}
               variants={fadeInUp}
-              className="image-hover relative overflow-hidden bg-white"
+              className="image-hover relative overflow-hidden bg-white cursor-pointer"
               data-testid={`portfolio-item-${index}`}
+              onClick={() => setSelectedImage(image)}
             >
               <img 
                 src={image} 
@@ -705,10 +725,35 @@ const PortfolioSection = () => {
                 className="w-full h-auto object-contain"
                 loading="lazy"
               />
+              <div className="absolute inset-0 bg-black/0 hover:bg-black/20 transition-colors flex items-center justify-center opacity-0 hover:opacity-100">
+                <span className="text-white font-body text-sm bg-black/50 px-3 py-1 rounded">Agrandir</span>
+              </div>
             </motion.div>
           ))}
         </motion.div>
       </div>
+
+      {/* Lightbox Modal */}
+      {selectedImage && (
+        <div 
+          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+          onClick={() => setSelectedImage(null)}
+        >
+          <button 
+            className="absolute top-4 right-4 text-white hover:text-[#C5A880] transition-colors"
+            onClick={() => setSelectedImage(null)}
+            data-testid="lightbox-close"
+          >
+            <X size={32} />
+          </button>
+          <img 
+            src={selectedImage} 
+            alt="Image agrandie"
+            className="max-w-full max-h-[90vh] object-contain"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </section>
   );
 };
