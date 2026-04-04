@@ -27,7 +27,7 @@ import { useState } from "react";
 
 // Assets
 const ASSETS = {
-  logo: "https://customer-assets.emergentagent.com/job_9f4d5ced-1252-4d4d-84b4-8f449859b862/artifacts/xvphhiqe_LOGO.png",
+  logo: "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/i4af2ypb_ce466e89-d563-4a72-9e3e-983c6de3fef2.png",
   heroBackground: "https://static.prod-images.emergentagent.com/jobs/9f4d5ced-1252-4d4d-84b4-8f449859b862/images/44470d4692f1ef36d4ecde18df28e14401b93f1e2ee45a814e1a887fb107b401.png",
   profilePhoto: "https://customer-assets.emergentagent.com/job_9f4d5ced-1252-4d4d-84b4-8f449859b862/artifacts/z16q6siu_P_20191016_104333.jpg",
   portfolio: [
@@ -37,7 +37,9 @@ const ASSETS = {
     "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/mkku4xr2_amenagement%20interieur.png",
     "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/l2o6oogw_BTK%202.png",
     "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/sithft8j_EXTENSION.png",
-    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/xp04tq1m_Gemini_Generated_Image_ppghs3ppghs3ppgh%281%29.png"
+    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/xp04tq1m_Gemini_Generated_Image_ppghs3ppghs3ppgh%281%29.png",
+    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/ish9kir5_ANGT%20EXT.jpg",
+    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/p8lk95yu_4%20lots.jpg"
   ]
 };
 
@@ -443,12 +445,6 @@ const AboutSection = () => {
 
         <AnimatedSection>
           <div className="card-elegant p-8 md:p-12">
-            <div className="flex flex-col md:flex-row gap-8 items-start">
-              <img 
-                src={ASSETS.profilePhoto} 
-                alt={CONTACT.name}
-                className="w-32 h-32 rounded-full object-cover profile-image mx-auto md:mx-0 flex-shrink-0"
-              />
               <div className="font-body text-[#595959] leading-relaxed space-y-4">
                 <p className="font-heading text-xl text-[#1C1C1C] italic">
                   « Voici une fenêtre sur le champ des possibles qu'explore l'Agence Prela, selon vos besoins, vos contraintes, vos rythmes. »
@@ -478,7 +474,6 @@ const AboutSection = () => {
                   Basée en Corse et en Périgord Pourpre, je vous accompagne ici, là‑bas, et au‑delà.
                 </p>
               </div>
-            </div>
           </div>
         </AnimatedSection>
       </div>
@@ -824,16 +819,9 @@ const ContactSection = () => {
             <h2 className="font-heading text-3xl md:text-4xl font-light mt-4 mb-6">Prenons contact</h2>
             <div className="separator mb-8" />
             
-            <div className="flex items-center gap-6 mb-8">
-              <img 
-                src={ASSETS.profilePhoto} 
-                alt={CONTACT.name}
-                className="w-24 h-24 rounded-full object-cover profile-image"
-              />
-              <div>
-                <h3 className="font-heading text-2xl font-semibold">{CONTACT.name}</h3>
-                <p className="font-body text-[#8A8A8A]">{CONTACT.locations}</p>
-              </div>
+            <div className="mb-8">
+              <h3 className="font-heading text-2xl font-semibold">{CONTACT.name}</h3>
+              <p className="font-body text-[#8A8A8A]">{CONTACT.locations}</p>
             </div>
 
             <div className="space-y-4">
@@ -881,9 +869,9 @@ const ContactSection = () => {
 
           <AnimatedSection className="hidden md:block">
             <div className="card-elegant p-8">
-              <h4 className="font-heading text-xl font-semibold mb-4">Prêt à démarrer votre projet ?</h4>
+              <h4 className="font-heading text-xl font-semibold mb-4">Prêt à démarrer ?</h4>
               <p className="font-body text-[#595959] mb-6">
-                Contactez-nous directement par téléphone ou email pour discuter de votre projet. 
+                Contactez-nous directement par téléphone ou email pour discuter de vos besoins. 
                 Nous vous répondrons dans les meilleurs délais.
               </p>
               <a 
