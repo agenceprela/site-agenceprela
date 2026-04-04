@@ -47,10 +47,10 @@ const ASSETS = {
     "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/fu6yknga_projet%20de%20construction.jpg"
   ],
   decorative: [
-    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/ot4nrwb9_CORSE%20%2816%29.jpg",
-    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/gsk2x81n_pierre%20Maurens%20%281%29.jpg",
-    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/oihlevlo_ST%20AMAND%20DE%20COLY%20%2858%29.jpg",
-    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/cuq1vqm1_466069785_9041183802567501_7608671728850779865_n.jpg"
+    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/tan7j60y_466158579_9042680795751135_8232406991835141836_n.jpg",
+    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/jsgnt50u_CORSE%20%2816%29.jpg",
+    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/qd2sxhac_pierre%20Maurens%20%281%29.jpg",
+    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/zfakwi47_1727612168730.jpg"
   ],
   skyBanner: "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/zw5fi8pm_466343022_9042654035753811_3421513272952920549_n.jpg"
 };
@@ -564,44 +564,41 @@ const ServicesSection = () => {
   );
 };
 
-// Process Infographic Section
+// Services Overview Section (Independent services, not sequential)
 const ProcessSection = () => {
-  const steps = [
-    { number: "01", title: "Clarification", desc: "Jalon gratuit pour définir vos besoins", color: "#C5A880" },
-    { number: "02", title: "Consultation", desc: "Échange personnalisé (1h ou Aplomb)", color: "#B3956D" },
-    { number: "03", title: "Étude", desc: "Analyse réglementaire complète", color: "#A08060" },
-    { number: "04", title: "Livraison", desc: "Dossiers et visuels 3D", color: "#8D6B50" }
+  const services = [
+    { title: "Jalon", desc: "Clarifiez votre projet gratuitement", tag: "Gratuit" },
+    { title: "Consultation", desc: "Échange personnalisé 1h", tag: "120 €" },
+    { title: "Aplomb", desc: "Vérification réglementaire complète", tag: "149 €" },
+    { title: "Mission complète", desc: "Accompagnement global jusqu'au permis", tag: "Sur devis" }
   ];
 
   return (
     <section className="py-16 bg-gradient-to-r from-[#F3F2F0] to-[#FAFAFA]" data-testid="process-section">
       <div className="max-w-6xl mx-auto px-6 md:px-12">
         <AnimatedSection className="text-center mb-12">
-          <span className="label-elegant">Comment ça marche</span>
-          <h2 className="font-heading text-2xl md:text-3xl font-light mt-4">Votre parcours</h2>
+          <span className="label-elegant">Nos prestations</span>
+          <h2 className="font-heading text-2xl md:text-3xl font-light mt-4">À la carte ou en mission complète</h2>
+          <p className="font-body text-sm text-[#595959] mt-4 max-w-xl mx-auto">
+            Chaque service est indépendant et peut être utilisé seul. En mission complète, je vous accompagne sur l'ensemble du parcours.
+          </p>
         </AnimatedSection>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {steps.map((step, index) => (
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {services.map((service, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.15, duration: 0.5 }}
-              className="text-center"
+              transition={{ delay: index * 0.1, duration: 0.5 }}
+              className="bg-white p-6 text-center border border-[#E6DED5] hover:border-[#C5A880] transition-colors"
             >
-              <div 
-                className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-white font-heading text-xl"
-                style={{ backgroundColor: step.color }}
-              >
-                {step.number}
-              </div>
-              <h4 className="font-heading text-lg font-semibold mb-2">{step.title}</h4>
-              <p className="font-body text-sm text-[#595959]">{step.desc}</p>
-              {index < steps.length - 1 && (
-                <div className="hidden md:block absolute top-8 right-0 w-full h-0.5 bg-[#E6DED5]" />
-              )}
+              <span className="inline-block text-xs font-body bg-[#C5A880] text-white px-2 py-1 rounded mb-3">
+                {service.tag}
+              </span>
+              <h4 className="font-heading text-lg font-semibold mb-2">{service.title}</h4>
+              <p className="font-body text-sm text-[#595959]">{service.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -652,11 +649,11 @@ const SkyBannerSection = () => {
       <img 
         src={ASSETS.skyBanner} 
         alt="Ciel et liberté"
-        className="w-full h-full object-cover"
+        className="w-full h-full object-cover object-top"
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent flex items-center">
+      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent py-6">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <p className="font-heading text-2xl md:text-3xl text-white italic max-w-lg">
+          <p className="font-heading text-xl md:text-2xl text-white italic text-center">
             Vos projets méritent de prendre leur envol
           </p>
         </div>
