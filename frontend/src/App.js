@@ -563,6 +563,62 @@ const ServicesSection = () => {
   );
 };
 
+// Relaxing Animation Component (Stripe-inspired)
+const RelaxingAnimation = () => {
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <svg className="w-full h-full" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style={{ stopColor: '#C5A880', stopOpacity: 0.3 }} />
+            <stop offset="50%" style={{ stopColor: '#E6DED5', stopOpacity: 0.2 }} />
+            <stop offset="100%" style={{ stopColor: '#F3F2F0', stopOpacity: 0.1 }} />
+          </linearGradient>
+        </defs>
+        {/* Animated rays */}
+        {[...Array(24)].map((_, i) => {
+          const angle = (i * 15) * (Math.PI / 180);
+          const length = 300 + Math.random() * 200;
+          const x2 = 400 + Math.cos(angle) * length;
+          const y2 = 500 + Math.sin(angle) * length;
+          return (
+            <line
+              key={i}
+              x1="400"
+              y1="500"
+              x2={x2}
+              y2={y2}
+              stroke="url(#grad1)"
+              strokeWidth={1 + Math.random() * 2}
+              className="animate-pulse"
+              style={{ 
+                animationDelay: `${i * 0.1}s`,
+                animationDuration: `${3 + Math.random() * 2}s`
+              }}
+            />
+          );
+        })}
+        {/* Floating dots */}
+        {[...Array(30)].map((_, i) => (
+          <circle
+            key={`dot-${i}`}
+            cx={100 + Math.random() * 600}
+            cy={50 + Math.random() * 400}
+            r={2 + Math.random() * 3}
+            fill="#C5A880"
+            opacity={0.2 + Math.random() * 0.3}
+            className="animate-pulse"
+            style={{ 
+              animationDelay: `${i * 0.2}s`,
+              animationDuration: `${2 + Math.random() * 3}s`
+            }}
+          />
+        ))}
+      </svg>
+    </div>
+  );
+};
+
 // Services Overview Section (Independent services, not sequential)
 const ProcessSection = () => {
   const services = [
@@ -570,7 +626,8 @@ const ProcessSection = () => {
       title: "Jalon", 
       tag: "Gratuit",
       color: "#C5A880",
-      desc: "Outil de clarification de projet. Identifiez vos besoins et obtenez une synthèse claire.",
+      desc: "Clarifiez votre projet en 5 minutes. Identifiez vos besoins, contraintes et priorités. Obtenez une synthèse claire pour démarrer sereinement.",
+      features: ["5 min", "Sans engagement", "Synthèse PDF"],
       action: "Accéder",
       link: "https://fanciful-toffee-243ec4.netlify.app/",
       external: true
@@ -579,7 +636,8 @@ const ProcessSection = () => {
       title: "Consultation", 
       tag: "120 €",
       color: "#B3956D",
-      desc: "Échange personnalisé (1h) pour analyser votre projet, cadrer la stratégie et orienter les priorités.",
+      desc: "Échange personnalisé d'1 heure. Analysez votre projet, cadrez la stratégie et recevez des orientations concrètes adaptées à votre situation.",
+      features: ["1h visio/tel", "Conseils personnalisés", "Suivi par mail"],
       action: "Réserver",
       link: STRIPE_LINKS.consultation1h,
       external: true
@@ -588,7 +646,8 @@ const ProcessSection = () => {
       title: "Aplomb", 
       tag: "149 €",
       color: "#A08060",
-      desc: "Vérification complète des contraintes (PLU, taxes, aides, RE2020) avec compte-rendu PDF détaillé.",
+      desc: "Vérification réglementaire complète : PLU, surfaces, taxes, aides financières, RE2020, ABF. Recevez un compte-rendu PDF détaillé.",
+      features: ["Analyse PLU", "Calcul taxes/aides", "Compte-rendu PDF"],
       action: "Commander",
       link: STRIPE_LINKS.consultationAplomb,
       external: true
@@ -597,7 +656,8 @@ const ProcessSection = () => {
       title: "Mission", 
       tag: "Acompte 100 €",
       color: "#8D6B50",
-      desc: "Accompagnement complet : visuels 3D, dossiers administratifs, coordination jusqu'au permis.",
+      desc: "Accompagnement complet jusqu'au permis : visuels 3D, dossiers administratifs, coordination des intervenants, estimatif travaux.",
+      features: ["Visuels 3D", "Dossier permis", "Coordination"],
       action: "Démarrer",
       link: STRIPE_LINKS.acompteMission,
       external: true
@@ -605,8 +665,9 @@ const ProcessSection = () => {
   ];
 
   return (
-    <section id="services" className="section-padding bg-[#FAFAFA]" data-testid="services-section">
-      <div className="max-w-6xl mx-auto">
+    <section id="services" className="section-padding bg-[#FAFAFA] relative overflow-hidden" data-testid="services-section">
+      <RelaxingAnimation />
+      <div className="max-w-6xl mx-auto relative z-10">
         <AnimatedSection className="text-center mb-12">
           <span className="label-elegant">Nos prestations</span>
           <h2 className="font-heading text-2xl md:text-3xl font-light mt-4">À la carte ou en mission complète</h2>
@@ -646,7 +707,7 @@ const ProcessSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.5 }}
-              className="bg-white p-6 border border-[#E6DED5] hover:border-[#C5A880] transition-all hover:shadow-lg"
+              className="bg-white p-6 border border-[#E6DED5] hover:border-[#C5A880] transition-all hover:shadow-lg flex flex-col"
             >
               <div className="flex items-center justify-between mb-3">
                 <h4 className="font-heading text-lg font-semibold">{service.title}</h4>
@@ -657,12 +718,23 @@ const ProcessSection = () => {
                   {service.tag}
                 </span>
               </div>
-              <p className="font-body text-sm text-[#595959] mb-4 leading-relaxed">{service.desc}</p>
+              <p className="font-body text-sm text-[#595959] mb-4 leading-relaxed flex-grow">{service.desc}</p>
+              
+              {/* Features list */}
+              <div className="flex flex-wrap gap-1 mb-4">
+                {service.features.map((feature, i) => (
+                  <span key={i} className="text-xs bg-[#F3F2F0] text-[#8A8A8A] px-2 py-1 rounded">
+                    {feature}
+                  </span>
+                ))}
+              </div>
+              
               <a
                 href={service.link}
                 target={service.external ? "_blank" : undefined}
                 rel={service.external ? "noopener noreferrer" : undefined}
-                className="inline-flex items-center gap-2 text-sm font-medium text-[#C5A880] hover:text-[#8D6B50] transition-colors"
+                className="inline-flex items-center justify-center gap-2 text-sm font-medium text-white py-2 px-4 rounded transition-all hover:opacity-90"
+                style={{ backgroundColor: service.color }}
               >
                 {service.action}
                 <ExternalLink size={14} />
@@ -720,7 +792,7 @@ const SkyBannerSection = () => {
         className="w-full h-full object-cover"
       />
       <div className="absolute inset-0 flex items-start justify-center pt-8">
-        <p className="font-heading text-xl md:text-2xl text-white italic bg-black/40 px-6 py-3 rounded">
+        <p className="font-heading text-xl md:text-2xl text-white italic bg-black/40 px-8 py-3 rounded tracking-[0.25em]">
           Vos projets méritent de prendre leur envol
         </p>
       </div>
@@ -961,7 +1033,7 @@ const ReferentsSection = () => {
                 <Users size={20} className="text-[#C5A880]" />
                 {category.category}
               </h3>
-              <div className="grid md:grid-cols-3 gap-6">
+              <div className={`grid gap-6 ${category.experts.length === 2 ? 'md:grid-cols-2 max-w-2xl mx-auto' : 'md:grid-cols-3'}`}>
                 {category.experts.map((expert, expIndex) => (
                   <div 
                     key={expIndex} 
