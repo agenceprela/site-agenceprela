@@ -256,7 +256,6 @@ const Header = () => {
   const navLinks = [
     { label: "À propos", href: "#apropos" },
     { label: "Services", href: "#services" },
-    { label: "Paiement", href: "#paiement" },
     { label: "Portfolio", href: "#portfolio" },
     { label: "FAQ", href: "#faq" },
     { label: "Contact", href: "#contact" }
@@ -567,24 +566,79 @@ const ServicesSection = () => {
 // Services Overview Section (Independent services, not sequential)
 const ProcessSection = () => {
   const services = [
-    { title: "Jalon", desc: "Clarifiez votre projet gratuitement", tag: "Gratuit" },
-    { title: "Consultation", desc: "Échange personnalisé 1h", tag: "120 €" },
-    { title: "Aplomb", desc: "Vérification réglementaire complète", tag: "149 €" },
-    { title: "Mission complète", desc: "Accompagnement global jusqu'au permis", tag: "Sur devis" }
+    { 
+      title: "Jalon", 
+      tag: "Gratuit",
+      color: "#C5A880",
+      desc: "Outil de clarification de projet. Identifiez vos besoins et obtenez une synthèse claire.",
+      action: "Accéder",
+      link: "https://fanciful-toffee-243ec4.netlify.app/",
+      external: true
+    },
+    { 
+      title: "Consultation", 
+      tag: "120 €",
+      color: "#B3956D",
+      desc: "Échange personnalisé (1h) pour analyser votre projet, cadrer la stratégie et orienter les priorités.",
+      action: "Réserver",
+      link: STRIPE_LINKS.consultation1h,
+      external: true
+    },
+    { 
+      title: "Aplomb", 
+      tag: "149 €",
+      color: "#A08060",
+      desc: "Vérification complète des contraintes (PLU, taxes, aides, RE2020) avec compte-rendu PDF détaillé.",
+      action: "Commander",
+      link: STRIPE_LINKS.consultationAplomb,
+      external: true
+    },
+    { 
+      title: "Mission", 
+      tag: "Acompte 100 €",
+      color: "#8D6B50",
+      desc: "Accompagnement complet : visuels 3D, dossiers administratifs, coordination jusqu'au permis.",
+      action: "Démarrer",
+      link: STRIPE_LINKS.acompteMission,
+      external: true
+    }
   ];
 
   return (
-    <section className="py-16 bg-gradient-to-r from-[#F3F2F0] to-[#FAFAFA]" data-testid="process-section">
-      <div className="max-w-6xl mx-auto px-6 md:px-12">
+    <section id="services" className="section-padding bg-[#FAFAFA]" data-testid="services-section">
+      <div className="max-w-6xl mx-auto">
         <AnimatedSection className="text-center mb-12">
           <span className="label-elegant">Nos prestations</span>
           <h2 className="font-heading text-2xl md:text-3xl font-light mt-4">À la carte ou en mission complète</h2>
           <p className="font-body text-sm text-[#595959] mt-4 max-w-xl mx-auto">
-            Chaque service est indépendant et peut être utilisé seul. En mission complète, je vous accompagne sur l'ensemble du parcours.
+            Chaque service est indépendant. Les achats sont déduits en cas de mission complète.
           </p>
         </AnimatedSection>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {/* Round infographic */}
+        <div className="flex justify-center items-center gap-4 md:gap-8 mb-12 flex-wrap">
+          {services.map((service, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1, duration: 0.4 }}
+              className="text-center"
+            >
+              <div 
+                className="w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center mx-auto mb-2 text-white font-heading text-sm md:text-base shadow-lg"
+                style={{ backgroundColor: service.color }}
+              >
+                {service.title}
+              </div>
+              <span className="text-xs text-[#595959]">{service.tag}</span>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Detailed cards with links */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
           {services.map((service, index) => (
             <motion.div
               key={index}
@@ -592,13 +646,27 @@ const ProcessSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.5 }}
-              className="bg-white p-6 text-center border border-[#E6DED5] hover:border-[#C5A880] transition-colors"
+              className="bg-white p-6 border border-[#E6DED5] hover:border-[#C5A880] transition-all hover:shadow-lg"
             >
-              <span className="inline-block text-xs font-body bg-[#C5A880] text-white px-2 py-1 rounded mb-3">
-                {service.tag}
-              </span>
-              <h4 className="font-heading text-lg font-semibold mb-2">{service.title}</h4>
-              <p className="font-body text-sm text-[#595959]">{service.desc}</p>
+              <div className="flex items-center justify-between mb-3">
+                <h4 className="font-heading text-lg font-semibold">{service.title}</h4>
+                <span 
+                  className="text-xs font-body text-white px-2 py-1 rounded"
+                  style={{ backgroundColor: service.color }}
+                >
+                  {service.tag}
+                </span>
+              </div>
+              <p className="font-body text-sm text-[#595959] mb-4 leading-relaxed">{service.desc}</p>
+              <a
+                href={service.link}
+                target={service.external ? "_blank" : undefined}
+                rel={service.external ? "noopener noreferrer" : undefined}
+                className="inline-flex items-center gap-2 text-sm font-medium text-[#C5A880] hover:text-[#8D6B50] transition-colors"
+              >
+                {service.action}
+                <ExternalLink size={14} />
+              </a>
             </motion.div>
           ))}
         </div>
@@ -645,18 +713,16 @@ const TestimonialsSection = () => {
 // Sky Banner Section
 const SkyBannerSection = () => {
   return (
-    <section className="relative h-48 md:h-64 overflow-hidden" data-testid="sky-banner">
+    <section className="relative h-64 md:h-80 overflow-hidden" data-testid="sky-banner">
       <img 
         src={ASSETS.skyBanner} 
         alt="Ciel et liberté"
-        className="w-full h-full object-cover object-top"
+        className="w-full h-full object-cover"
       />
-      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent py-6">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <p className="font-heading text-xl md:text-2xl text-white italic text-center">
-            Vos projets méritent de prendre leur envol
-          </p>
-        </div>
+      <div className="absolute inset-0 flex items-start justify-center pt-8">
+        <p className="font-heading text-xl md:text-2xl text-white italic bg-black/40 px-6 py-3 rounded">
+          Vos projets méritent de prendre leur envol
+        </p>
       </div>
     </section>
   );
@@ -1377,10 +1443,8 @@ function App() {
         <HeroSection />
         <AboutSection />
         <ProcessSection />
-        <ServicesSection />
         <TestimonialsSection />
         <SkyBannerSection />
-        <PaymentSection />
         <PortfolioSection />
         <ReferentsSection />
         <TerroirSection />
