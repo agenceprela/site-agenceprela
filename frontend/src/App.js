@@ -38,9 +38,15 @@ const ASSETS = {
     "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/l2o6oogw_BTK%202.png",
     "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/sithft8j_EXTENSION.png",
     "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/xp04tq1m_Gemini_Generated_Image_ppghs3ppghs3ppgh%281%29.png",
-    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/ish9kir5_ANGT%20EXT.jpg",
     "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/p8lk95yu_4%20lots.jpg",
-    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/fu6yknga_projet%20de%20construction.jpg"
+    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/fu6yknga_projet%20de%20construction.jpg",
+    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/ish9kir5_ANGT%20EXT.jpg"
+  ],
+  decorative: [
+    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/gsk2x81n_pierre%20Maurens%20%281%29.jpg",
+    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/ot4nrwb9_CORSE%20%2816%29.jpg",
+    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/cuq1vqm1_466069785_9041183802567501_7608671728850779865_n.jpg",
+    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/i7bte9kj_466158579_9042680795751135_8232406991835141836_n.jpg"
   ]
 };
 
@@ -86,10 +92,10 @@ const SERVICES = [
     id: 3,
     title: "Jalon",
     subtitle: "Gratuit",
-    description: "Outil de clarification de projet accessible gratuitement. Identifiez vos besoins, comprenez les contraintes et obtenez une synthèse claire de votre situation.",
-    note: "Accès libre, sans obligation. Possibilité d'enregistrer votre synthèse en PDF.",
+    description: "Outil de clarification de projet. Identifiez vos besoins, comprenez les contraintes et obtenez une synthèse claire de votre situation.",
+    note: "Demandez l'accès à Jalon par email — je vous enverrai le lien personnalisé.",
     icon: CheckCircle2,
-    link: "https://fanciful-toffee-243ec4.netlify.app/"
+    isJalon: true
   },
   {
     id: 4,
@@ -444,30 +450,31 @@ const AboutSection = () => {
       <div className="max-w-4xl mx-auto">
         <AnimatedSection className="text-center mb-12">
           <span className="label-elegant">À propos</span>
-          <h2 className="font-heading text-3xl md:text-4xl font-light mt-4">Une fenêtre sur le champ des possibles</h2>
+          <h2 className="font-heading text-3xl md:text-4xl font-light mt-4">Rendre possible</h2>
           <div className="separator mx-auto mt-6" />
         </AnimatedSection>
 
         <AnimatedSection>
           <div className="card-elegant p-8 md:p-12">
               <div className="font-body text-[#595959] leading-relaxed space-y-4">
-                <p className="font-heading text-xl text-[#1C1C1C] italic">
-                  « Voici une fenêtre sur le champ des possibles qu'explore l'Agence Prela, selon vos besoins, vos contraintes, vos rythmes. »
+                <p className="font-heading text-xl text-[#1C1C1C] italic text-center mb-6">
+                  « Pour ce qui est de l'avenir, il ne s'agit pas de le prévoir mais de le rendre possible. »
+                  <span className="block text-sm text-[#C5A880] mt-2">— Antoine de Saint-Exupéry</span>
                 </p>
                 <p>
                   Diplômée "dessinatrice en bâtiment option dessin de projet" en 2008, j'ai fondé l'Agence Prela en 2009, portée par l'envie concrète de faire de cette reconversion un accomplissement personnel.
                 </p>
                 <p>
-                  Apprendre chaque jour auprès d'experts du bâti ancien, des éco‑constructeurs et de ceux qui pensent l'espace avec justesse, est un chemin fascinant, mais semé de conditions multiples, qu'on finit par anticiper, avec l'expérience.
+                  Apprendre chaque jour est un lot passionnant, au contact des artisans, des experts du bâti ancien, des éco‑constructeurs et de celles et ceux qui imaginent les espaces avec justesse.
                 </p>
                 <p>
-                  Ce qui me guide, c'est le plaisir de vous proposer des solutions adaptées en considérant tous les paramètres.
+                  Ce qui me guide, c'est le plaisir de vous proposer des solutions adaptées, vous permettre d'aboutir avec succès, en tenant compte de chaque paramètre.
                 </p>
                 <p>
-                  Au fil des années, j'ai créé des outils & méthodes afin de clarifier vos besoins, comprendre les règles, anticiper aides et taxes.
+                  Au fil des années, j'ai mis au point des outils et des méthodes pour mieux comprendre vos besoins, les règles à suivre, et anticiper les aides ou taxes liées à chaque projet.
                 </p>
                 <p>
-                  Mes forces restent simples : <strong>l'écoute, la sensibilité, la réactivité</strong>, soutenues par des applications multiples et un usage précis de l'IA.
+                  Mes forces sont simples : <strong>l'écoute, la sensibilité et la réactivité</strong>, appuyées par une expérience riche et un usage précis de chaque savoir‑faire.
                 </p>
                 <p>
                   Je propose des consultations courtes, des missions ciblées ou un accompagnement complet jusqu'aux démarches administratives.
@@ -532,6 +539,16 @@ const ServicesSection = () => {
                     >
                       Accéder à Jalon
                       <ExternalLink size={16} />
+                    </a>
+                  )}
+                  {service.isJalon && (
+                    <a 
+                      href={`mailto:${CONTACT.email}?subject=Demande d'accès à Jalon&body=Bonjour,%0A%0AJe souhaiterais accéder à l'outil Jalon pour clarifier mon projet.%0A%0AMerci de m'envoyer le lien.%0A%0ACordialement`}
+                      className="btn-primary inline-flex items-center gap-2 mt-4"
+                      data-testid="jalon-request"
+                    >
+                      Demander l'accès à Jalon
+                      <Mail size={16} />
                     </a>
                   )}
                 </div>
@@ -853,6 +870,44 @@ const ReferentsSection = () => {
   );
 };
 
+// Terroir Section - Decorative images
+const TerroirSection = () => {
+  return (
+    <section className="py-16 bg-[#FAFAFA]" data-testid="terroir-section">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <AnimatedSection className="text-center mb-12">
+          <span className="label-elegant">Nos territoires</span>
+          <h2 className="font-heading text-2xl md:text-3xl font-light mt-4">Corse & Périgord Pourpre</h2>
+          <div className="separator mx-auto mt-6" />
+        </AnimatedSection>
+
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={staggerContainer}
+          className="grid grid-cols-2 md:grid-cols-4 gap-4"
+        >
+          {ASSETS.decorative.map((image, index) => (
+            <motion.div
+              key={index}
+              variants={fadeInUp}
+              className="overflow-hidden aspect-square"
+            >
+              <img 
+                src={image} 
+                alt={`Territoire ${index + 1}`}
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
 // Contact Section
 const ContactSection = () => {
   return (
@@ -935,32 +990,114 @@ const ContactSection = () => {
   );
 };
 
-// Footer
+// Footer with Legal Mentions
 const Footer = () => {
-  return (
-    <footer className="footer py-12 px-6 md:px-12" data-testid="footer">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-3">
-            <img src={ASSETS.logo} alt="Agence Prela" className="h-10 w-auto brightness-0 invert" />
-            <span className="font-heading text-lg">Agence Prela</span>
-          </div>
-          
-          <p className="font-body text-sm text-[#8A8A8A] text-center">
-            © {new Date().getFullYear()} Agence Prela — Bureau d'études en bâtiment depuis 2009
-          </p>
+  const [showLegal, setShowLegal] = useState(false);
 
-          <div className="flex gap-4">
-            <a href={CONTACT.youtube} target="_blank" rel="noopener noreferrer" className="text-[#8A8A8A] hover:text-[#C5A880] transition-colors">
-              <Youtube size={20} />
-            </a>
-            <a href={CONTACT.instagram} target="_blank" rel="noopener noreferrer" className="text-[#8A8A8A] hover:text-[#C5A880] transition-colors">
-              <Instagram size={20} />
-            </a>
+  return (
+    <>
+      <footer className="footer py-12 px-6 md:px-12" data-testid="footer">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="flex items-center gap-3">
+              <img src={ASSETS.logo} alt="Agence Prela" className="h-10 w-auto brightness-0 invert" />
+              <span className="font-heading text-lg">Agence Prela</span>
+            </div>
+            
+            <div className="text-center">
+              <p className="font-body text-sm text-[#8A8A8A]">
+                © {new Date().getFullYear()} Agence Prela — Bureau d'études en bâtiment depuis 2009
+              </p>
+              <button 
+                onClick={() => setShowLegal(true)}
+                className="font-body text-xs text-[#8A8A8A] hover:text-[#C5A880] mt-1 transition-colors"
+                data-testid="legal-link"
+              >
+                Mentions légales & Protection des données
+              </button>
+            </div>
+
+            <div className="flex gap-4">
+              <a href={CONTACT.youtube} target="_blank" rel="noopener noreferrer" className="text-[#8A8A8A] hover:text-[#C5A880] transition-colors">
+                <Youtube size={20} />
+              </a>
+              <a href={CONTACT.instagram} target="_blank" rel="noopener noreferrer" className="text-[#8A8A8A] hover:text-[#C5A880] transition-colors">
+                <Instagram size={20} />
+              </a>
+            </div>
           </div>
         </div>
-      </div>
-    </footer>
+      </footer>
+
+      {/* Legal Modal */}
+      {showLegal && (
+        <div 
+          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 overflow-y-auto"
+          onClick={() => setShowLegal(false)}
+        >
+          <div 
+            className="bg-white max-w-3xl w-full max-h-[90vh] overflow-y-auto p-8 md:p-12 rounded-sm"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button 
+              className="absolute top-4 right-4 text-[#595959] hover:text-[#C5A880] transition-colors"
+              onClick={() => setShowLegal(false)}
+            >
+              <X size={24} />
+            </button>
+            
+            <h2 className="font-heading text-2xl font-semibold mb-6">Mentions légales</h2>
+            
+            <div className="font-body text-sm text-[#595959] space-y-4">
+              <div>
+                <h3 className="font-semibold text-[#1C1C1C] mb-2">Éditeur du site</h3>
+                <p>Agence Prela<br/>
+                Véronique Mazeau<br/>
+                Haute-Corse & Périgord Pourpre<br/>
+                Téléphone : 06 82 92 72 76<br/>
+                Email : contact.agenceprela@gmail.com</p>
+              </div>
+
+              <div>
+                <h3 className="font-semibold text-[#1C1C1C] mb-2">Hébergement</h3>
+                <p>Ce site est hébergé par Emergent Agent.<br/>
+                Domaine : agenceprela.fr</p>
+              </div>
+
+              <div>
+                <h3 className="font-semibold text-[#1C1C1C] mb-2">Propriété intellectuelle</h3>
+                <p>L'ensemble du contenu de ce site (textes, images, visuels, logos) est la propriété exclusive de l'Agence Prela, sauf mention contraire. Toute reproduction, représentation, modification ou exploitation non autorisée est interdite.</p>
+              </div>
+
+              <div>
+                <h3 className="font-semibold text-[#1C1C1C] mb-2">Protection des données personnelles</h3>
+                <p>Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez d'un droit d'accès, de rectification et de suppression des données vous concernant.</p>
+                <p className="mt-2">Les données collectées via les formulaires de contact sont utilisées uniquement pour répondre à vos demandes. Elles ne sont jamais transmises à des tiers sans votre consentement.</p>
+                <p className="mt-2">Pour exercer vos droits ou pour toute question relative à vos données, contactez-nous : contact.agenceprela@gmail.com</p>
+              </div>
+
+              <div>
+                <h3 className="font-semibold text-[#1C1C1C] mb-2">Cookies</h3>
+                <p>Ce site n'utilise pas de cookies de suivi publicitaire. Seuls des cookies techniques nécessaires au bon fonctionnement du site peuvent être utilisés.</p>
+              </div>
+
+              <div>
+                <h3 className="font-semibold text-[#1C1C1C] mb-2">Crédits</h3>
+                <p>Conception et réalisation : Agence Prela<br/>
+                Photographies : © Agence Prela, sauf mention contraire</p>
+              </div>
+            </div>
+
+            <button 
+              onClick={() => setShowLegal(false)}
+              className="btn-primary mt-8"
+            >
+              Fermer
+            </button>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
@@ -999,6 +1136,7 @@ function App() {
         <PaymentSection />
         <PortfolioSection />
         <ReferentsSection />
+        <TerroirSection />
         <ContactSection />
       </main>
       <Footer />
