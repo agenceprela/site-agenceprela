@@ -20,9 +20,9 @@ Site vitrine pour Agence Prela - Bureau d'études en bâtiment depuis 2009 (agen
 
 ## Ce Qui a Été Implémenté
 - [x] Header avec navigation sticky glassmorphism + bouton unique "Demander un devis"
-- [x] Hero section avec profil Véronique Mazeau et CTA devis
+- [x] Hero section avec nouvelle photo profil (selfie nature) et CTA devis
 - [x] Section À propos avec citation Saint-Exupéry
-- [x] Section Services — 4 cartes directes (Jalon, Consultation, Aplomb, Mission)
+- [x] Section Services — 4 cartes directes sans pastilles (Jalon, Consultation, Aplomb, Mission)
 - [x] Carte Aplomb avec détails dépliables
 - [x] Bannière témoignages clients marquee (8 avis Google)
 - [x] Portfolio avec galerie + lightbox + ombres portées
@@ -30,15 +30,16 @@ Site vitrine pour Agence Prela - Bureau d'études en bâtiment depuis 2009 (agen
 - [x] Section Terroir (4 photos: Lauzes, Granite Corse, Olivier/église, Jasmin)
 - [x] FAQ (5 questions)
 - [x] Section Contact avec formulaire de devis complet (POST /api/devis)
-- [x] Bannière ciel avant footer (texte blanc, espacement lisible)
+- [x] Bannière ciel avant footer — texte marron doré scintillant
 - [x] Widget accessibilité PMR
 - [x] Footer avec mentions légales
+- [x] SEO complet (meta description, Open Graph, Twitter cards, keywords, canonical)
 - [x] Responsive mobile vérifié
 - [x] Animations Framer Motion + Smooth scroll Lenis
 
 ## Architecture
 - Frontend: React + Tailwind CSS + Framer Motion + Lenis
-- Backend: FastAPI + MongoDB (formulaire devis)
+- Backend: FastAPI + MongoDB (formulaire devis uniquement)
 - Paiements: Liens Stripe externes
 
 ## Liens Stripe
@@ -53,8 +54,8 @@ Site vitrine pour Agence Prela - Bureau d'études en bâtiment depuis 2009 (agen
 
 ## Backlog
 ### P1
-- [ ] SEO optimisation (meta tags, Open Graph)
-- [ ] Notification email lors d'une demande de devis
+- [ ] Notification email lors d'une demande de devis (SendGrid/Resend)
+- [ ] Configuration nom de domaine agenceprela.fr
 
 ### P2
 - [ ] Blog/Actualités

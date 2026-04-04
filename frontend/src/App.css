@@ -187,3 +187,28 @@ body.high-contrast .testimonial-quote,
 body.high-contrast .font-heading {
   color: #000000;
 }
+
+/* Sky banner golden shimmer text */
+.sky-banner-text {
+  color: #C5A880;
+  text-shadow: 
+    0 0 8px rgba(197, 168, 128, 0.4),
+    0 0 20px rgba(197, 168, 128, 0.15),
+    0 2px 8px rgba(0, 0, 0, 0.3);
+  animation: shimmer 4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% {
+    text-shadow: 
+      0 0 8px rgba(197, 168, 128, 0.4),
+      0 0 20px rgba(197, 168, 128, 0.15),
+      0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+  50% {
+    text-shadow: 
+      0 0 12px rgba(210, 185, 145, 0.6),
+      0 0 30px rgba(210, 185, 145, 0.25),
+      0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+}

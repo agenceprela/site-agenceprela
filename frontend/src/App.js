@@ -34,7 +34,7 @@ import { useState, useCallback } from "react";
 const ASSETS = {
   logo: "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/18ge5v5s_logo%20fond%20transparnet.png",
   heroBackground: "https://static.prod-images.emergentagent.com/jobs/9f4d5ced-1252-4d4d-84b4-8f449859b862/images/44470d4692f1ef36d4ecde18df28e14401b93f1e2ee45a814e1a887fb107b401.png",
-  profilePhoto: "https://customer-assets.emergentagent.com/job_9f4d5ced-1252-4d4d-84b4-8f449859b862/artifacts/z16q6siu_P_20191016_104333.jpg",
+  profilePhoto: "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/lrorx3rn_Gemini_Generated_Image_awv6kcawv6kcawv6.jpeg",
   portfolio: [
     "https://customer-assets.emergentagent.com/job_9f4d5ced-1252-4d4d-84b4-8f449859b862/artifacts/6pm6fb1q_CHT%20DST.jpg",
     "https://customer-assets.emergentagent.com/job_9f4d5ced-1252-4d4d-84b4-8f449859b862/artifacts/jr0at7lv_permis%20de%20construire.png",
@@ -659,7 +659,7 @@ const SkyBannerSection = () => {
         className="w-full h-full object-cover"
       />
       <div className="absolute inset-0 flex items-end justify-center pb-10">
-        <p className="font-heading text-sm sm:text-xl md:text-3xl text-white font-light tracking-[0.1em] md:tracking-[0.2em] uppercase px-4 text-center" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.4)' }}>
+        <p className="font-heading text-sm sm:text-xl md:text-3xl font-light tracking-[0.1em] md:tracking-[0.2em] uppercase px-4 text-center sky-banner-text">
           Vos projets méritent de prendre leur envol
         </p>
       </div>
