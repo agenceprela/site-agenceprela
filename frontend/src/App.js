@@ -18,7 +18,10 @@ import {
   X,
   ExternalLink,
   CheckCircle2,
-  ArrowRight
+  ArrowRight,
+  Star,
+  Info,
+  Briefcase
 } from "lucide-react";
 import { useState } from "react";
 
@@ -30,12 +33,11 @@ const ASSETS = {
   portfolio: [
     "https://customer-assets.emergentagent.com/job_9f4d5ced-1252-4d4d-84b4-8f449859b862/artifacts/6pm6fb1q_CHT%20DST.jpg",
     "https://customer-assets.emergentagent.com/job_9f4d5ced-1252-4d4d-84b4-8f449859b862/artifacts/jr0at7lv_permis%20de%20construire.png",
-    "https://images.unsplash.com/photo-1766603636700-e9d80473f40f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzV8MHwxfHNlYXJjaHwyfHxlbGVnYW50JTIwbW9kZXJuJTIwYXJjaGl0ZWN0dXJlJTIwZXh0ZXJpb3IlMjBob3VzZXxlbnwwfHx8fDE3NzUyMjQ0MDd8MA&ixlib=rb-4.1.0&q=85",
-    "https://images.unsplash.com/photo-1635006459494-c9b9665a666e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzV8MHwxfHNlYXJjaHwxfHxlbGVnYW50JTIwbW9kZXJuJTIwYXJjaGl0ZWN0dXJlJTIwZXh0ZXJpb3IlMjBob3VzZXxlbnwwfHx8fDE3NzUyMjQ0MDd8MA&ixlib=rb-4.1.0&q=85"
-  ],
-  testimonialPortraits: [
-    "https://images.pexels.com/photos/30004323/pexels-photo-30004323.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-    "https://images.unsplash.com/photo-1762522926157-bcc04bf0b10a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzF8MHwxfHNlYXJjaHwyfHxwcm9mZXNzaW9uYWwlMjBwb3J0cmFpdCUyMGhlYWRzaG90fGVufDB8fHx8MTc3NTIyNDQyNnww&ixlib=rb-4.1.0&q=85"
+    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/fsd73e6f_am%C3%A9nagement%20exterieur.png",
+    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/mkku4xr2_amenagement%20interieur.png",
+    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/l2o6oogw_BTK%202.png",
+    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/sithft8j_EXTENSION.png",
+    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/xp04tq1m_Gemini_Generated_Image_ppghs3ppghs3ppgh%281%29.png"
   ]
 };
 
@@ -61,7 +63,7 @@ const SERVICES = [
   {
     id: 1,
     title: "Consultation à distance",
-    subtitle: "Payante",
+    subtitle: "120 €",
     description: "Échange en visio, mail ou par téléphone pour analyser votre projet, cadrer la stratégie, vérifier les points bloquants et orienter les priorités.",
     note: "La consultation se rémunère via un lien de paiement Stripe envoyé par mail après réservation.",
     icon: Phone
@@ -69,7 +71,7 @@ const SERVICES = [
   {
     id: 2,
     title: "Aplomb",
-    subtitle: "149 € — Consultation directe",
+    subtitle: "149 €",
     description: "Vérification de conformité des contraintes (PLU, Surfaces, seuil architecte, taxe aménagement, aides financières locales, départementales, nationales, RE2020, ABF, etc.) dans le cadre d'un rendez‑vous individuel à distance.",
     note: "Prestation réglée par lien Stripe après la séance, avant réception du compte-rendu complet PDF.",
     icon: FileText
@@ -85,9 +87,9 @@ const SERVICES = [
   {
     id: 4,
     title: "Mission complète",
-    subtitle: "3D + Dossiers administratifs",
+    subtitle: "Avant-projet sommaire",
     description: "Accompagnement global incluant visualisation 3D du projet, dossiers administratifs (permis, DP, suivi), coordination avec les intervenants, aide à la décision sur le montage urbain et foncier.",
-    note: "Service personnalisé facturé via Stripe (lien ou devis).",
+    note: "Estimatif sommaire selon les prix de référence, prêt au chiffrage précis avec artisans et coordinateur. Le client signe ses propres demandes de permis (limité à 150 m² de SDP).",
     icon: Building2
   }
 ];
@@ -154,27 +156,47 @@ const REFERENTS = [
   }
 ];
 
-// Testimonials Data
+// REAL Google Testimonials
 const TESTIMONIALS = [
   {
-    quote: "Un accompagnement professionnel et humain qui nous a permis de concrétiser notre projet de rénovation avec sérénité.",
-    author: "Marie D.",
-    project: "Rénovation maison ancienne"
+    quote: "Excellents conseillers à l'écoute de nos projets.",
+    author: "Anne-Marie Battini",
+    rating: 5
   },
   {
-    quote: "Expertise irréprochable sur les contraintes réglementaires. Le permis de construire a été obtenu sans difficulté.",
-    author: "Jean-Pierre L.",
-    project: "Construction neuve"
+    quote: "Très bonne expérience avec Mme Mazeau, elle travaille avec rigueur et reste à l'écoute, de plus elle est disponible.",
+    author: "Ecaldane",
+    rating: 5
   },
   {
-    quote: "L'outil Jalon nous a permis de garder une vision claire de chaque étape. Très professionnel.",
-    author: "Sophie M.",
-    project: "Extension habitat"
+    quote: "Une agence très efficace et réactive. C'est un vrai plaisir de travailler avec une équipe aussi professionnelle. Leurs compétences en conception architecturale sont de premier ordre, avec un travail précis et méticuleux. Je les recommande sans hésitation.",
+    author: "Frédéric Noll",
+    rating: 5
   },
   {
-    quote: "Consultation Aplomb très complète : toutes les règles applicables en un seul rendez-vous.",
-    author: "Marc T.",
-    project: "Changement de destination"
+    quote: "Véronique est très professionnelle, disponible et investie dans son travail, nous la recommandons sans hésitation ! Merci encore pour tout.",
+    author: "Ophélie Ferrière",
+    rating: 5
+  },
+  {
+    quote: "Excellente expérience ! Véronique est très professionnelle, à l'écoute et d'une efficacité redoutable. Merci pour l'accompagnement.",
+    author: "Anthony Don",
+    rating: 5
+  },
+  {
+    quote: "Véronique est très à l'écoute, c'est toujours un plaisir de collaborer avec elle.",
+    author: "Flo BWH",
+    rating: 5
+  },
+  {
+    quote: "Toujours disponible pour échanger et de bons conseils. Je recommande.",
+    author: "Nicolas Rohrbach",
+    rating: 5
+  },
+  {
+    quote: "Excellent accompagnement, professionnel et à l'écoute de nos besoins.",
+    author: "Victor Ferrière",
+    rating: 5
   }
 ];
 
@@ -219,6 +241,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [
+    { label: "À propos", href: "#apropos" },
     { label: "Services", href: "#services" },
     { label: "Paiement", href: "#paiement" },
     { label: "Portfolio", href: "#portfolio" },
@@ -237,13 +260,13 @@ const Header = () => {
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-6">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 className="font-body text-sm tracking-wide link-hover text-[#595959] hover:text-[#C5A880]"
-                data-testid={`nav-${link.label.toLowerCase()}`}
+                data-testid={`nav-${link.label.toLowerCase().replace(' ', '-')}`}
               >
                 {link.label}
               </a>
@@ -407,12 +430,68 @@ const HeroSection = () => {
   );
 };
 
+// About Section
+const AboutSection = () => {
+  return (
+    <section id="apropos" className="section-padding bg-[#FAFAFA]" data-testid="about-section">
+      <div className="max-w-4xl mx-auto">
+        <AnimatedSection className="text-center mb-12">
+          <span className="label-elegant">À propos</span>
+          <h2 className="font-heading text-3xl md:text-4xl font-light mt-4">Une fenêtre sur le champ des possibles</h2>
+          <div className="separator mx-auto mt-6" />
+        </AnimatedSection>
+
+        <AnimatedSection>
+          <div className="card-elegant p-8 md:p-12">
+            <div className="flex flex-col md:flex-row gap-8 items-start">
+              <img 
+                src={ASSETS.profilePhoto} 
+                alt={CONTACT.name}
+                className="w-32 h-32 rounded-full object-cover profile-image mx-auto md:mx-0 flex-shrink-0"
+              />
+              <div className="font-body text-[#595959] leading-relaxed space-y-4">
+                <p className="font-heading text-xl text-[#1C1C1C] italic">
+                  « Voici une fenêtre sur le champ des possibles qu'explore l'Agence Prela, selon vos besoins, vos contraintes, vos rythmes. »
+                </p>
+                <p>
+                  Diplômée "dessinatrice en bâtiment option dessin de projet" en 2008, j'ai fondé l'Agence Prela en 2009, portée par l'envie concrète de faire de cette reconversion un accomplissement personnel.
+                </p>
+                <p>
+                  Apprendre chaque jour auprès d'experts du bâti ancien, des éco‑constructeurs et de ceux qui pensent l'espace avec justesse, est un chemin fascinant, mais semé de conditions multiples, qu'on finit par anticiper, avec l'expérience.
+                </p>
+                <p>
+                  Ce qui me guide, c'est le plaisir de vous proposer des solutions adaptées en considérant tous les paramètres.
+                </p>
+                <p>
+                  Au fil des années, j'ai créé des outils & méthodes afin de clarifier vos besoins, comprendre les règles, anticiper aides et taxes.
+                </p>
+                <p>
+                  Mes forces restent simples : <strong>l'écoute, la sensibilité, la réactivité</strong>, soutenues par des applications multiples et un usage précis de l'IA.
+                </p>
+                <p>
+                  Je propose des consultations courtes, des missions ciblées ou un accompagnement complet jusqu'aux démarches administratives.
+                </p>
+                <p>
+                  Mon réseau indépendant rassemble référents de chantier, artisans, architectes, ingénieurs et consultants bioclimatiques, qui prennent le relai selon les besoins et vos choix.
+                </p>
+                <p className="font-semibold text-[#C5A880]">
+                  Basée en Corse et en Périgord Pourpre, je vous accompagne ici, là‑bas, et au‑delà.
+                </p>
+              </div>
+            </div>
+          </div>
+        </AnimatedSection>
+      </div>
+    </section>
+  );
+};
+
 // Services Section
 const ServicesSection = () => {
   return (
-    <section id="services" className="section-padding bg-[#FAFAFA]" data-testid="services-section">
+    <section id="services" className="section-padding bg-[#F3F2F0]" data-testid="services-section">
       <div className="max-w-7xl mx-auto">
-        <AnimatedSection className="text-center mb-16">
+        <AnimatedSection className="text-center mb-12">
           <span className="label-elegant">Prestations</span>
           <h2 className="font-heading text-3xl md:text-4xl font-light mt-4">Nos services</h2>
           <div className="separator mx-auto mt-6" />
@@ -437,7 +516,7 @@ const ServicesSection = () => {
                   <service.icon size={24} className="text-[#C5A880]" />
                 </div>
                 <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-2">
+                  <div className="flex items-center gap-3 mb-2 flex-wrap">
                     <h3 className="font-heading text-xl font-semibold">{service.title}</h3>
                     <span className="text-xs font-body bg-[#E6DED5] px-2 py-1 rounded">{service.subtitle}</span>
                   </div>
@@ -448,30 +527,68 @@ const ServicesSection = () => {
             </motion.div>
           ))}
         </motion.div>
+
+        {/* Important Note */}
+        <AnimatedSection className="mt-8">
+          <div className="bg-[#E6DED5]/50 border border-[#C5A880]/30 p-6 rounded-sm">
+            <div className="flex items-start gap-3">
+              <Info size={20} className="text-[#C5A880] flex-shrink-0 mt-1" />
+              <div className="font-body text-sm text-[#595959]">
+                <p className="font-semibold text-[#1C1C1C] mb-2">Information importante :</p>
+                <p>Chaque achat effectué en amont (Consultation 1h, Aplomb) sera <strong>déduit</strong> s'il y a commande de Mission complète d'Avant-projet sommaire.</p>
+              </div>
+            </div>
+          </div>
+        </AnimatedSection>
+
+        {/* Professional subscription */}
+        <AnimatedSection className="mt-6">
+          <div className="card-elegant p-6 text-center">
+            <div className="flex items-center justify-center gap-2 mb-3">
+              <Briefcase size={20} className="text-[#C5A880]" />
+              <h4 className="font-heading text-lg font-semibold">Offre Professionnels</h4>
+            </div>
+            <p className="font-body text-sm text-[#595959]">
+              Abonnement disponible pour les professionnels du bâtiment et de l'immobilier. 
+              <a href={`mailto:${CONTACT.email}?subject=Demande abonnement professionnel`} className="text-[#C5A880] hover:underline ml-1">
+                Contactez-nous pour en savoir plus.
+              </a>
+            </p>
+          </div>
+        </AnimatedSection>
       </div>
     </section>
   );
 };
 
-// Testimonials Marquee Section
+// Testimonials Marquee Section (Real Google Reviews)
 const TestimonialsSection = () => {
   return (
     <section className="py-12 bg-[#2A2A2A]" data-testid="testimonials-section">
       <div className="mb-8 text-center">
-        <span className="label-elegant text-[#C5A880]">Avis clients</span>
+        <span className="label-elegant text-[#C5A880]">Avis Google</span>
+        <div className="flex items-center justify-center gap-1 mt-2">
+          {[...Array(5)].map((_, i) => (
+            <Star key={i} size={16} fill="#C5A880" className="text-[#C5A880]" />
+          ))}
+          <span className="text-white/60 text-sm ml-2">5/5</span>
+        </div>
       </div>
       <Marquee 
-        speed={40} 
+        speed={35} 
         gradient={false}
         pauseOnHover={true}
         className="overflow-hidden"
       >
         {TESTIMONIALS.map((testimonial, index) => (
-          <div key={index} className="mx-16 max-w-md" data-testid={`testimonial-${index}`}>
-            <p className="testimonial-quote text-white mb-4">"{testimonial.quote}"</p>
-            <p className="font-body text-sm text-[#C5A880]">
-              — {testimonial.author}, <span className="text-[#8A8A8A]">{testimonial.project}</span>
-            </p>
+          <div key={index} className="mx-12 max-w-sm" data-testid={`testimonial-${index}`}>
+            <div className="flex gap-1 mb-3">
+              {[...Array(testimonial.rating)].map((_, i) => (
+                <Star key={i} size={14} fill="#C5A880" className="text-[#C5A880]" />
+              ))}
+            </div>
+            <p className="font-heading text-lg text-white/90 italic leading-relaxed mb-3">"{testimonial.quote}"</p>
+            <p className="font-body text-sm text-[#C5A880]">— {testimonial.author}</p>
           </div>
         ))}
       </Marquee>
@@ -484,29 +601,30 @@ const PaymentSection = () => {
   const paymentOptions = [
     {
       title: "Consultation 1h",
+      price: "120 €",
       description: "Échange personnalisé pour analyser votre projet et définir les priorités.",
       link: STRIPE_LINKS.consultation1h,
       testId: "stripe-consultation-1h"
     },
     {
       title: "Consultation Aplomb",
-      description: "Vérification complète des contraintes réglementaires avec compte-rendu PDF.",
       price: "149 €",
+      description: "Vérification complète des contraintes réglementaires avec compte-rendu PDF.",
       link: STRIPE_LINKS.consultationAplomb,
       testId: "stripe-aplomb"
     },
     {
       title: "Acompte Mission Complète",
-      description: "Premier versement pour démarrer votre accompagnement global.",
+      description: "Premier versement pour démarrer votre accompagnement global (Avant-projet sommaire).",
       link: STRIPE_LINKS.acompteMission,
       testId: "stripe-acompte"
     }
   ];
 
   return (
-    <section id="paiement" className="section-padding bg-[#F3F2F0]" data-testid="payment-section">
+    <section id="paiement" className="section-padding bg-[#FAFAFA]" data-testid="payment-section">
       <div className="max-w-7xl mx-auto">
-        <AnimatedSection className="text-center mb-16">
+        <AnimatedSection className="text-center mb-12">
           <span className="label-elegant">Paiement sécurisé</span>
           <h2 className="font-heading text-3xl md:text-4xl font-light mt-4">Modalités de paiement</h2>
           <div className="separator mx-auto mt-6" />
@@ -533,7 +651,7 @@ const PaymentSection = () => {
               </div>
               <h3 className="font-heading text-xl font-semibold mb-2">{option.title}</h3>
               {option.price && (
-                <p className="font-heading text-2xl text-[#C5A880] mb-4">{option.price}</p>
+                <p className="font-heading text-3xl text-[#C5A880] mb-4">{option.price}</p>
               )}
               <p className="font-body text-sm text-[#595959] mb-6">{option.description}</p>
               <a
@@ -549,24 +667,24 @@ const PaymentSection = () => {
             </motion.div>
           ))}
         </motion.div>
+
+        {/* Deduction note */}
+        <AnimatedSection className="mt-8 text-center">
+          <p className="font-body text-sm text-[#8A8A8A] italic">
+            Les paiements effectués (Consultation, Aplomb) sont déduits en cas de commande de Mission complète.
+          </p>
+        </AnimatedSection>
       </div>
     </section>
   );
 };
 
-// Portfolio Section
+// Portfolio Section - Simple and fluid
 const PortfolioSection = () => {
-  const portfolioItems = [
-    { image: ASSETS.portfolio[0], title: "Changement de destination", category: "Rénovation" },
-    { image: ASSETS.portfolio[1], title: "Permis de construire", category: "Construction" },
-    { image: ASSETS.portfolio[2], title: "Architecture moderne", category: "Projet 3D" },
-    { image: ASSETS.portfolio[3], title: "Conception bioclimatique", category: "Études" }
-  ];
-
   return (
-    <section id="portfolio" className="section-padding bg-[#FAFAFA]" data-testid="portfolio-section">
+    <section id="portfolio" className="section-padding bg-[#F3F2F0]" data-testid="portfolio-section">
       <div className="max-w-7xl mx-auto">
-        <AnimatedSection className="text-center mb-16">
+        <AnimatedSection className="text-center mb-12">
           <span className="label-elegant">Réalisations</span>
           <h2 className="font-heading text-3xl md:text-4xl font-light mt-4">Portfolio</h2>
           <div className="separator mx-auto mt-6" />
@@ -577,26 +695,21 @@ const PortfolioSection = () => {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={staggerContainer}
-          className="portfolio-grid"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
         >
-          {portfolioItems.map((item, index) => (
+          {ASSETS.portfolio.map((image, index) => (
             <motion.div
               key={index}
               variants={fadeInUp}
-              className={`portfolio-item image-hover relative group ${index === 0 ? 'aspect-square' : 'aspect-video'}`}
+              className="image-hover relative overflow-hidden bg-white"
               data-testid={`portfolio-item-${index}`}
             >
               <img 
-                src={item.image} 
-                alt={item.title}
-                className="w-full h-full object-cover"
+                src={image} 
+                alt={`Projet ${index + 1}`}
+                className="w-full h-auto object-contain"
+                loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute bottom-4 left-4 text-white">
-                  <p className="text-xs uppercase tracking-wider text-[#C5A880]">{item.category}</p>
-                  <h4 className="font-heading text-lg">{item.title}</h4>
-                </div>
-              </div>
             </motion.div>
           ))}
         </motion.div>
@@ -608,16 +721,25 @@ const PortfolioSection = () => {
 // Referents Section
 const ReferentsSection = () => {
   return (
-    <section id="referents" className="section-padding bg-[#F3F2F0]" data-testid="referents-section">
+    <section id="referents" className="section-padding bg-[#FAFAFA]" data-testid="referents-section">
       <div className="max-w-7xl mx-auto">
-        <AnimatedSection className="text-center mb-16">
+        <AnimatedSection className="text-center mb-12">
           <span className="label-elegant">Partenaires</span>
           <h2 className="font-heading text-3xl md:text-4xl font-light mt-4">Nos référents conseillés</h2>
           <div className="separator mx-auto mt-6" />
           <p className="font-body text-[#595959] mt-6 max-w-2xl mx-auto">
-            Pour chaque projet, nous vous orientons vers les bons spécialistes, adaptés à votre situation. 
-            Référents recommandés pour leur savoir-faire, sans lien commercial.
+            Pour chaque projet, nous vous orientons vers les bons spécialistes, adaptés à votre situation.
           </p>
+        </AnimatedSection>
+
+        {/* Important disclaimer */}
+        <AnimatedSection className="mb-8">
+          <div className="bg-[#E6DED5]/50 border border-[#C5A880]/30 p-4 rounded-sm text-center">
+            <p className="font-body text-sm text-[#595959]">
+              <strong>Réseau de consultants recommandés</strong> pour leur savoir-faire — jamais mandatés. 
+              Chacun contractualise directement avec le client. <strong>Aucun lien commercial avec Prela.</strong>
+            </p>
+          </div>
         </AnimatedSection>
 
         <AnimatedSection className="mb-8">
@@ -791,7 +913,7 @@ const Footer = () => {
             <span className="font-heading text-lg">Agence Prela</span>
           </div>
           
-          <p className="font-body text-sm text-[#8A8A8A]">
+          <p className="font-body text-sm text-[#8A8A8A] text-center">
             © {new Date().getFullYear()} Agence Prela — Bureau d'études en bâtiment depuis 2009
           </p>
 
@@ -838,6 +960,7 @@ function App() {
       <Header />
       <main>
         <HeroSection />
+        <AboutSection />
         <ServicesSection />
         <TestimonialsSection />
         <PaymentSection />
