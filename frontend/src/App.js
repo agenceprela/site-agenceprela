@@ -563,10 +563,30 @@ const ServicesSection = () => {
   );
 };
 
-// Relaxing Animation Component (Stripe-inspired)
+// Interactive Relaxing Animation Component (Click to create ripples)
 const RelaxingAnimation = () => {
+  const [ripples, setRipples] = useState([]);
+
+  const handleClick = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const id = Date.now();
+    
+    setRipples(prev => [...prev, { id, x, y }]);
+    
+    // Remove ripple after animation
+    setTimeout(() => {
+      setRipples(prev => prev.filter(r => r.id !== id));
+    }, 2000);
+  };
+
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <div 
+      className="absolute inset-0 overflow-hidden cursor-pointer"
+      onClick={handleClick}
+      title="Cliquez pour jouer"
+    >
       <svg className="w-full h-full" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
         <defs>
           <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -574,39 +594,45 @@ const RelaxingAnimation = () => {
             <stop offset="50%" style={{ stopColor: '#E6DED5', stopOpacity: 0.2 }} />
             <stop offset="100%" style={{ stopColor: '#F3F2F0', stopOpacity: 0.1 }} />
           </linearGradient>
+          <radialGradient id="rippleGrad">
+            <stop offset="0%" style={{ stopColor: '#C5A880', stopOpacity: 0.6 }} />
+            <stop offset="100%" style={{ stopColor: '#C5A880', stopOpacity: 0 }} />
+          </radialGradient>
         </defs>
-        {/* Animated rays */}
-        {[...Array(24)].map((_, i) => {
-          const angle = (i * 15) * (Math.PI / 180);
-          const length = 300 + Math.random() * 200;
+        
+        {/* Background rays */}
+        {[...Array(16)].map((_, i) => {
+          const angle = (i * 22.5) * (Math.PI / 180);
+          const length = 250 + Math.random() * 150;
           const x2 = 400 + Math.cos(angle) * length;
-          const y2 = 500 + Math.sin(angle) * length;
+          const y2 = 400 + Math.sin(angle) * length;
           return (
             <line
               key={i}
               x1="400"
-              y1="500"
+              y1="400"
               x2={x2}
               y2={y2}
               stroke="url(#grad1)"
-              strokeWidth={1 + Math.random() * 2}
+              strokeWidth={1 + Math.random()}
               className="animate-pulse"
               style={{ 
-                animationDelay: `${i * 0.1}s`,
+                animationDelay: `${i * 0.15}s`,
                 animationDuration: `${3 + Math.random() * 2}s`
               }}
             />
           );
         })}
+        
         {/* Floating dots */}
-        {[...Array(30)].map((_, i) => (
+        {[...Array(20)].map((_, i) => (
           <circle
             key={`dot-${i}`}
             cx={100 + Math.random() * 600}
             cy={50 + Math.random() * 400}
-            r={2 + Math.random() * 3}
+            r={2 + Math.random() * 2}
             fill="#C5A880"
-            opacity={0.2 + Math.random() * 0.3}
+            opacity={0.15 + Math.random() * 0.2}
             className="animate-pulse"
             style={{ 
               animationDelay: `${i * 0.2}s`,
@@ -614,7 +640,41 @@ const RelaxingAnimation = () => {
             }}
           />
         ))}
+        
+        {/* Click ripples */}
+        {ripples.map(ripple => (
+          <circle
+            key={ripple.id}
+            cx={(ripple.x / window.innerWidth) * 800}
+            cy={(ripple.y / 600) * 600}
+            r="0"
+            fill="none"
+            stroke="#C5A880"
+            strokeWidth="2"
+            className="ripple-effect"
+          >
+            <animate
+              attributeName="r"
+              from="0"
+              to="150"
+              dur="1.5s"
+              fill="freeze"
+            />
+            <animate
+              attributeName="opacity"
+              from="0.8"
+              to="0"
+              dur="1.5s"
+              fill="freeze"
+            />
+          </circle>
+        ))}
       </svg>
+      
+      {/* Hint text */}
+      <div className="absolute bottom-2 right-2 text-xs text-[#C5A880]/50 italic">
+        cliquez pour jouer ✨
+      </div>
     </div>
   );
 };
@@ -646,17 +706,20 @@ const ProcessSection = () => {
       title: "Aplomb", 
       tag: "149 €",
       color: "#A08060",
-      desc: "Vérification réglementaire complète : PLU, surfaces, taxes, aides financières, RE2020, ABF. Recevez un compte-rendu PDF détaillé.",
-      features: ["Analyse PLU", "Calcul taxes/aides", "Compte-rendu PDF"],
+      desc: "Ce qu'on analyse ensemble : Formalité exacte · Démarche administrative · Délais d'instruction · Surface de plancher · Seuil architecte · Taxe d'aménagement · Zone PLU · Réglementation d'urbanisme · Loi Littoral · PADDUC · Risques naturels · Aides financières · MaPrimeRénov' · Photovoltaïque · Fourchette de coût au m²",
+      details: "Tout type de projet : Construction · Rénovation · Extension · Annexe · Habitat léger · Agricole · Commercial · Changement de destination · Aménagement. Tous les profils : Propriétaire · Futur acquéreur · Mandataire · Héritier · Investisseur. Tout le territoire français.",
+      note: "L'outil structure. Mon analyse oriente. Vous repartez avec un PDF clair et un projet cadré.",
+      features: ["Analyse complète", "PDF détaillé", "Tout territoire"],
       action: "Commander",
       link: STRIPE_LINKS.consultationAplomb,
-      external: true
+      external: true,
+      expanded: true
     },
     { 
       title: "Mission", 
       tag: "Acompte 100 €",
       color: "#8D6B50",
-      desc: "Accompagnement complet jusqu'au permis : visuels 3D, dossiers administratifs, coordination des intervenants, estimatif travaux.",
+      desc: "Accompagnement complet jusqu'au permis : visuels 3D, dossiers administratifs, coordination des intervenants, estimatif sommaire des travaux.",
       features: ["Visuels 3D", "Dossier permis", "Coordination"],
       action: "Démarrer",
       link: STRIPE_LINKS.acompteMission,
