@@ -92,9 +92,9 @@ const SERVICES = [
     title: "Jalon",
     subtitle: "Gratuit",
     description: "Outil de clarification de projet. Identifiez vos besoins, comprenez les contraintes et obtenez une synthèse claire de votre situation.",
-    note: "Demandez l'accès à Jalon par email — je vous enverrai le lien personnalisé.",
+    note: "Accès libre, sans obligation. Possibilité d'approfondir avec une consultation Aplomb.",
     icon: CheckCircle2,
-    isJalon: true
+    link: "https://fanciful-toffee-243ec4.netlify.app/"
   },
   {
     id: 4,
@@ -533,16 +533,6 @@ const ServicesSection = () => {
                     >
                       Accéder à Jalon
                       <ExternalLink size={16} />
-                    </a>
-                  )}
-                  {service.isJalon && (
-                    <a 
-                      href={`mailto:${CONTACT.email}?subject=Demande d'accès à Jalon&body=Bonjour,%0A%0AJe souhaiterais accéder à l'outil Jalon pour clarifier mon projet.%0A%0AMerci de m'envoyer le lien.%0A%0ACordialement`}
-                      className="btn-primary inline-flex items-center gap-2 mt-4"
-                      data-testid="jalon-request"
-                    >
-                      Demander l'accès à Jalon
-                      <Mail size={16} />
                     </a>
                   )}
                 </div>
