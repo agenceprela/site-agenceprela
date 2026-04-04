@@ -27,7 +27,7 @@ import { useState } from "react";
 
 // Assets
 const ASSETS = {
-  logo: "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/i4af2ypb_ce466e89-d563-4a72-9e3e-983c6de3fef2.png",
+  logo: "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/18ge5v5s_logo%20fond%20transparnet.png",
   heroBackground: "https://static.prod-images.emergentagent.com/jobs/9f4d5ced-1252-4d4d-84b4-8f449859b862/images/44470d4692f1ef36d4ecde18df28e14401b93f1e2ee45a814e1a887fb107b401.png",
   profilePhoto: "https://customer-assets.emergentagent.com/job_9f4d5ced-1252-4d4d-84b4-8f449859b862/artifacts/z16q6siu_P_20191016_104333.jpg",
   portfolio: [
@@ -39,14 +39,13 @@ const ASSETS = {
     "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/sithft8j_EXTENSION.png",
     "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/xp04tq1m_Gemini_Generated_Image_ppghs3ppghs3ppgh%281%29.png",
     "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/p8lk95yu_4%20lots.jpg",
-    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/fu6yknga_projet%20de%20construction.jpg",
-    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/ish9kir5_ANGT%20EXT.jpg"
+    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/fu6yknga_projet%20de%20construction.jpg"
   ],
   decorative: [
-    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/gsk2x81n_pierre%20Maurens%20%281%29.jpg",
-    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/ot4nrwb9_CORSE%20%2816%29.jpg",
-    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/cuq1vqm1_466069785_9041183802567501_7608671728850779865_n.jpg",
-    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/i7bte9kj_466158579_9042680795751135_8232406991835141836_n.jpg"
+    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/uc8y80ja_Dommes%20.jpg",
+    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/kvj6l336_san%20antonino%20%281%29.JPG",
+    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/oihlevlo_ST%20AMAND%20DE%20COLY%20%2858%29.jpg",
+    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/gsk2x81n_pierre%20Maurens%20%281%29.jpg"
   ]
 };
 
@@ -710,7 +709,15 @@ const PaymentSection = () => {
 
 // Portfolio Section with Lightbox
 const PortfolioSection = () => {
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState(null);
+
+  const navigateLightbox = (direction) => {
+    if (selectedIndex === null) return;
+    const newIndex = selectedIndex + direction;
+    if (newIndex >= 0 && newIndex < ASSETS.portfolio.length) {
+      setSelectedIndex(newIndex);
+    }
+  };
 
   return (
     <section id="portfolio" className="section-padding bg-[#F3F2F0]" data-testid="portfolio-section">
@@ -726,49 +733,78 @@ const PortfolioSection = () => {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={staggerContainer}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+          className="grid grid-cols-2 md:grid-cols-3 gap-3"
         >
           {ASSETS.portfolio.map((image, index) => (
             <motion.div
               key={index}
               variants={fadeInUp}
-              className="image-hover relative overflow-hidden bg-white cursor-pointer"
+              className="relative overflow-hidden bg-white cursor-pointer aspect-[4/3]"
               data-testid={`portfolio-item-${index}`}
-              onClick={() => setSelectedImage(image)}
+              onClick={() => setSelectedIndex(index)}
             >
               <img 
                 src={image} 
                 alt={`Projet ${index + 1}`}
-                className="w-full h-auto object-contain"
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-black/0 hover:bg-black/20 transition-colors flex items-center justify-center opacity-0 hover:opacity-100">
-                <span className="text-white font-body text-sm bg-black/50 px-3 py-1 rounded">Agrandir</span>
-              </div>
             </motion.div>
           ))}
         </motion.div>
       </div>
 
-      {/* Lightbox Modal */}
-      {selectedImage && (
+      {/* Lightbox Modal with Navigation */}
+      {selectedIndex !== null && (
         <div 
-          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
-          onClick={() => setSelectedImage(null)}
+          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center"
+          onClick={() => setSelectedIndex(null)}
         >
+          {/* Close button */}
           <button 
-            className="absolute top-4 right-4 text-white hover:text-[#C5A880] transition-colors"
-            onClick={() => setSelectedImage(null)}
+            className="absolute top-4 right-4 text-white hover:text-[#C5A880] transition-colors z-10"
+            onClick={() => setSelectedIndex(null)}
             data-testid="lightbox-close"
           >
-            <X size={32} />
+            <X size={28} />
           </button>
-          <img 
-            src={selectedImage} 
-            alt="Image agrandie"
-            className="max-w-full max-h-[90vh] object-contain"
+
+          {/* Previous button */}
+          {selectedIndex > 0 && (
+            <button
+              className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-[#C5A880] transition-colors z-10 p-2"
+              onClick={(e) => { e.stopPropagation(); navigateLightbox(-1); }}
+            >
+              <ChevronRight size={32} className="rotate-180" />
+            </button>
+          )}
+
+          {/* Image container - same aspect ratio */}
+          <div 
+            className="w-full max-w-5xl mx-4 aspect-[4/3] relative"
             onClick={(e) => e.stopPropagation()}
-          />
+          >
+            <img 
+              src={ASSETS.portfolio[selectedIndex]} 
+              alt={`Projet ${selectedIndex + 1}`}
+              className="w-full h-full object-contain"
+            />
+          </div>
+
+          {/* Next button */}
+          {selectedIndex < ASSETS.portfolio.length - 1 && (
+            <button
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-[#C5A880] transition-colors z-10 p-2"
+              onClick={(e) => { e.stopPropagation(); navigateLightbox(1); }}
+            >
+              <ChevronRight size={32} />
+            </button>
+          )}
+
+          {/* Image counter */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/60 text-sm">
+            {selectedIndex + 1} / {ASSETS.portfolio.length}
+          </div>
         </div>
       )}
     </section>
@@ -820,11 +856,11 @@ const ReferentsSection = () => {
                 <Users size={20} className="text-[#C5A880]" />
                 {category.category}
               </h3>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid md:grid-cols-3 gap-6">
                 {category.experts.map((expert, expIndex) => (
                   <div 
                     key={expIndex} 
-                    className="referent-card bg-white p-6"
+                    className="referent-card bg-white p-6 h-full flex flex-col"
                     data-testid={`referent-${catIndex}-${expIndex}`}
                   >
                     <h4 className="font-heading text-lg font-semibold">{expert.name}</h4>
@@ -833,7 +869,7 @@ const ReferentsSection = () => {
                       <MapPin size={14} />
                       {expert.location}
                     </p>
-                    <p className="font-body text-sm text-[#595959] mt-3">{expert.specialty}</p>
+                    <p className="font-body text-sm text-[#595959] mt-3 flex-grow">{expert.specialty}</p>
                     {expert.availability && (
                       <p className="text-xs text-[#8A8A8A] mt-2">{expert.availability}</p>
                     )}
@@ -1060,8 +1096,7 @@ const Footer = () => {
 
               <div>
                 <h3 className="font-semibold text-[#1C1C1C] mb-2">Hébergement</h3>
-                <p>Ce site est hébergé par Emergent Agent.<br/>
-                Domaine : agenceprela.fr</p>
+                <p>Domaine : agenceprela.fr</p>
               </div>
 
               <div>
