@@ -49,8 +49,8 @@ const ASSETS = {
   decorative: [
     "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/tan7j60y_466158579_9042680795751135_8232406991835141836_n.jpg",
     "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/jsgnt50u_CORSE%20%2816%29.jpg",
-    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/qd2sxhac_pierre%20Maurens%20%281%29.jpg",
-    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/zfakwi47_1727612168730.jpg"
+    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/pqhdfxy0_466069785_9041183802567501_7608671728850779865_n.jpg",
+    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/7pt0xsd0_1724402252704.jpg"
   ],
   skyBanner: "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/zw5fi8pm_466343022_9042654035753811_3421513272952920549_n.jpg"
 };
@@ -287,11 +287,11 @@ const Header = () => {
 
           {/* CTA Button */}
           <a
-            href="#paiement"
+            href="#contact"
             className="hidden md:block btn-primary"
             data-testid="header-cta"
           >
-            Réserver
+            Demander un devis
           </a>
 
           {/* Mobile Menu Button */}
@@ -320,11 +320,11 @@ const Header = () => {
               </a>
             ))}
             <a
-              href="#paiement"
+              href="#contact"
               className="btn-primary text-center mt-4"
               onClick={() => setIsMenuOpen(false)}
             >
-              Réserver
+              Demander un devis
             </a>
           </nav>
         </div>
@@ -380,11 +380,11 @@ const HeroSection = () => {
               className="flex flex-col sm:flex-row gap-4"
             >
               <a 
-                href="#paiement" 
+                href="#contact" 
                 className="btn-primary inline-flex items-center justify-center gap-2"
                 data-testid="hero-cta-primary"
               >
-                Réserver une consultation
+                Demander un devis
                 <ChevronRight size={18} />
               </a>
               <a 
@@ -537,28 +537,6 @@ const ProcessSection = () => {
           </p>
         </AnimatedSection>
 
-        {/* Round infographic */}
-        <div className="flex justify-center items-center gap-4 md:gap-8 mb-12 flex-wrap">
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.4 }}
-              className="text-center"
-            >
-              <div 
-                className="w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center mx-auto mb-2 text-white font-heading text-sm md:text-base shadow-lg"
-                style={{ backgroundColor: service.color }}
-              >
-                {service.title}
-              </div>
-              <span className="text-xs text-[#595959]">{service.tag}</span>
-            </motion.div>
-          ))}
-        </div>
-
         {/* Detailed cards with links */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
           {services.map((service, index) => (
@@ -681,7 +659,7 @@ const SkyBannerSection = () => {
         className="w-full h-full object-cover"
       />
       <div className="absolute inset-0 flex items-end justify-center pb-10">
-        <p className="font-heading text-2xl md:text-4xl text-white font-light tracking-[0.3em] md:tracking-[0.5em] uppercase" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.4)' }}>
+        <p className="font-heading text-sm sm:text-xl md:text-3xl text-white font-light tracking-[0.1em] md:tracking-[0.2em] uppercase px-4 text-center" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.4)' }}>
           Vos projets méritent de prendre leur envol
         </p>
       </div>
