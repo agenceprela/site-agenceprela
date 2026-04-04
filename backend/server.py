@@ -6,7 +6,7 @@ import os
 import logging
 from pathlib import Path
 from pydantic import BaseModel, Field, ConfigDict
-from typing import List
+from typing import List, Optional
 import uuid
 from datetime import datetime, timezone
 
@@ -37,6 +37,27 @@ class StatusCheck(BaseModel):
 class StatusCheckCreate(BaseModel):
     client_name: str
 
+class DevisRequest(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    nom: str
+    email: str
+    telephone: Optional[str] = None
+    type_projet: str
+    description: str
+    localisation: Optional[str] = None
+    budget: Optional[str] = None
+    timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+class DevisRequestCreate(BaseModel):
+    nom: str
+    email: str
+    telephone: Optional[str] = None
+    type_projet: str
+    description: str
+    localisation: Optional[str] = None
+    budget: Optional[str] = None
+
 # Add your routes to the router instead of directly to app
 @api_router.get("/")
 async def root():
@@ -56,15 +77,28 @@ async def create_status_check(input: StatusCheckCreate):
 
 @api_router.get("/status", response_model=List[StatusCheck])
 async def get_status_checks():
-    # Exclude MongoDB's _id field from the query results
     status_checks = await db.status_checks.find({}, {"_id": 0}).to_list(1000)
-    
-    # Convert ISO string timestamps back to datetime objects
     for check in status_checks:
         if isinstance(check['timestamp'], str):
             check['timestamp'] = datetime.fromisoformat(check['timestamp'])
-    
     return status_checks
+
+@api_router.post("/devis", response_model=DevisRequest)
+async def create_devis(input: DevisRequestCreate):
+    devis_dict = input.model_dump()
+    devis_obj = DevisRequest(**devis_dict)
+    doc = devis_obj.model_dump()
+    doc['timestamp'] = doc['timestamp'].isoformat()
+    await db.devis_requests.insert_one(doc)
+    return devis_obj
+
+@api_router.get("/devis", response_model=List[DevisRequest])
+async def get_devis():
+    devis = await db.devis_requests.find({}, {"_id": 0}).to_list(1000)
+    for d in devis:
+        if isinstance(d.get('timestamp'), str):
+            d['timestamp'] = datetime.fromisoformat(d['timestamp'])
+    return devis
 
 # Include the router in the main app
 app.include_router(api_router)

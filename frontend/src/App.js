@@ -476,219 +476,18 @@ const AboutSection = () => {
   );
 };
 
-// Services Section
-const ServicesSection = () => {
-  return (
-    <section id="services" className="section-padding bg-[#F3F2F0]" data-testid="services-section">
-      <div className="max-w-7xl mx-auto">
-        <AnimatedSection className="text-center mb-12">
-          <span className="label-elegant">Prestations</span>
-          <h2 className="font-heading text-3xl md:text-4xl font-light mt-4">Nos services</h2>
-          <div className="separator mx-auto mt-6" />
-        </AnimatedSection>
-
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={staggerContainer}
-          className="grid md:grid-cols-2 gap-6"
-        >
-          {SERVICES.map((service) => (
-            <motion.div
-              key={service.id}
-              variants={fadeInUp}
-              className="card-elegant service-card p-8"
-              data-testid={`service-card-${service.id}`}
-            >
-              <div className="flex items-start gap-4">
-                <div className="p-3 bg-[#F3F2F0] rounded">
-                  <service.icon size={24} className="text-[#C5A880]" />
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-2 flex-wrap">
-                    <h3 className="font-heading text-xl font-semibold">{service.title}</h3>
-                    <span className="text-xs font-body bg-[#E6DED5] px-2 py-1 rounded">{service.subtitle}</span>
-                  </div>
-                  <p className="font-body text-[#595959] mb-4 leading-relaxed">{service.description}</p>
-                  <p className="font-body text-sm text-[#8A8A8A] italic">{service.note}</p>
-                  {service.link && (
-                    <a 
-                      href={service.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-primary inline-flex items-center gap-2 mt-4"
-                      data-testid="jalon-cta"
-                    >
-                      Accéder à Jalon
-                      <ExternalLink size={16} />
-                    </a>
-                  )}
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Important Note */}
-        <AnimatedSection className="mt-8">
-          <div className="bg-[#E6DED5]/50 border border-[#C5A880]/30 p-6 rounded-sm">
-            <div className="flex items-start gap-3">
-              <Info size={20} className="text-[#C5A880] flex-shrink-0 mt-1" />
-              <div className="font-body text-sm text-[#595959]">
-                <p className="font-semibold text-[#1C1C1C] mb-2">Information importante :</p>
-                <p>Chaque achat effectué en amont (Consultation 1h, Aplomb) sera <strong>déduit</strong> s'il y a commande de Mission complète d'Avant-projet sommaire.</p>
-              </div>
-            </div>
-          </div>
-        </AnimatedSection>
-
-        {/* Professional subscription */}
-        <AnimatedSection className="mt-6">
-          <div className="card-elegant p-6 text-center">
-            <div className="flex items-center justify-center gap-2 mb-3">
-              <Briefcase size={20} className="text-[#C5A880]" />
-              <h4 className="font-heading text-lg font-semibold">Offre Professionnels</h4>
-            </div>
-            <p className="font-body text-sm text-[#595959]">
-              Abonnement disponible pour les professionnels du bâtiment et de l'immobilier. 
-              <a href={`mailto:${CONTACT.email}?subject=Demande abonnement professionnel`} className="text-[#C5A880] hover:underline ml-1">
-                Contactez-nous pour en savoir plus.
-              </a>
-            </p>
-          </div>
-        </AnimatedSection>
-      </div>
-    </section>
-  );
-};
-
-// Interactive Relaxing Animation Component (Click to create ripples)
-const RelaxingAnimation = () => {
-  const [ripples, setRipples] = useState([]);
-
-  const handleClick = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const id = Date.now();
-    
-    setRipples(prev => [...prev, { id, x, y }]);
-    
-    // Remove ripple after animation
-    setTimeout(() => {
-      setRipples(prev => prev.filter(r => r.id !== id));
-    }, 2000);
-  };
-
-  return (
-    <div 
-      className="absolute inset-0 overflow-hidden cursor-pointer"
-      onClick={handleClick}
-      title="Cliquez pour jouer"
-    >
-      <svg className="w-full h-full" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
-        <defs>
-          <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style={{ stopColor: '#C5A880', stopOpacity: 0.3 }} />
-            <stop offset="50%" style={{ stopColor: '#E6DED5', stopOpacity: 0.2 }} />
-            <stop offset="100%" style={{ stopColor: '#F3F2F0', stopOpacity: 0.1 }} />
-          </linearGradient>
-          <radialGradient id="rippleGrad">
-            <stop offset="0%" style={{ stopColor: '#C5A880', stopOpacity: 0.6 }} />
-            <stop offset="100%" style={{ stopColor: '#C5A880', stopOpacity: 0 }} />
-          </radialGradient>
-        </defs>
-        
-        {/* Background rays */}
-        {[...Array(16)].map((_, i) => {
-          const angle = (i * 22.5) * (Math.PI / 180);
-          const length = 250 + Math.random() * 150;
-          const x2 = 400 + Math.cos(angle) * length;
-          const y2 = 400 + Math.sin(angle) * length;
-          return (
-            <line
-              key={i}
-              x1="400"
-              y1="400"
-              x2={x2}
-              y2={y2}
-              stroke="url(#grad1)"
-              strokeWidth={1 + Math.random()}
-              className="animate-pulse"
-              style={{ 
-                animationDelay: `${i * 0.15}s`,
-                animationDuration: `${3 + Math.random() * 2}s`
-              }}
-            />
-          );
-        })}
-        
-        {/* Floating dots */}
-        {[...Array(20)].map((_, i) => (
-          <circle
-            key={`dot-${i}`}
-            cx={100 + Math.random() * 600}
-            cy={50 + Math.random() * 400}
-            r={2 + Math.random() * 2}
-            fill="#C5A880"
-            opacity={0.15 + Math.random() * 0.2}
-            className="animate-pulse"
-            style={{ 
-              animationDelay: `${i * 0.2}s`,
-              animationDuration: `${2 + Math.random() * 3}s`
-            }}
-          />
-        ))}
-        
-        {/* Click ripples */}
-        {ripples.map(ripple => (
-          <circle
-            key={ripple.id}
-            cx={(ripple.x / window.innerWidth) * 800}
-            cy={(ripple.y / 600) * 600}
-            r="0"
-            fill="none"
-            stroke="#C5A880"
-            strokeWidth="2"
-            className="ripple-effect"
-          >
-            <animate
-              attributeName="r"
-              from="0"
-              to="150"
-              dur="1.5s"
-              fill="freeze"
-            />
-            <animate
-              attributeName="opacity"
-              from="0.8"
-              to="0"
-              dur="1.5s"
-              fill="freeze"
-            />
-          </circle>
-        ))}
-      </svg>
-      
-      {/* Hint text */}
-      <div className="absolute bottom-2 right-2 text-xs text-[#C5A880]/50 italic">
-        cliquez pour jouer ✨
-      </div>
-    </div>
-  );
-};
-
 // Services Overview Section (Independent services, not sequential)
 const ProcessSection = () => {
+  const [expandedCard, setExpandedCard] = useState(null);
+
   const services = [
     { 
       title: "Jalon", 
       tag: "Gratuit",
       color: "#C5A880",
-      desc: "Clarifiez votre projet en 5 minutes. Identifiez vos besoins, contraintes et priorités. Obtenez une synthèse claire pour démarrer sereinement.",
-      features: ["5 min", "Sans engagement", "Synthèse PDF"],
-      action: "Accéder",
+      desc: "Clarifiez votre projet en 5 minutes. Identifiez vos besoins, contraintes et priorit\u00e9s. Obtenez une synth\u00e8se claire pour d\u00e9marrer sereinement.",
+      features: ["5 min", "Sans engagement", "Synth\u00e8se PDF"],
+      action: "Acc\u00e9der",
       link: "https://fanciful-toffee-243ec4.netlify.app/",
       external: true
     },
@@ -696,9 +495,9 @@ const ProcessSection = () => {
       title: "Consultation", 
       tag: "120 €",
       color: "#B3956D",
-      desc: "Échange personnalisé d'1 heure. Analysez votre projet, cadrez la stratégie et recevez des orientations concrètes adaptées à votre situation.",
-      features: ["1h visio/tel", "Conseils personnalisés", "Suivi par mail"],
-      action: "Réserver",
+      desc: "\u00c9change personnalis\u00e9 d'1 heure. Analysez votre projet, cadrez la strat\u00e9gie et recevez des orientations concr\u00e8tes adapt\u00e9es \u00e0 votre situation.",
+      features: ["1h visio/tel", "Conseils personnalis\u00e9s", "Suivi par mail"],
+      action: "R\u00e9server",
       link: STRIPE_LINKS.consultation1h,
       external: true
     },
@@ -706,14 +505,14 @@ const ProcessSection = () => {
       title: "Aplomb", 
       tag: "149 €",
       color: "#A08060",
-      desc: "Ce qu'on analyse ensemble : Formalité exacte · Démarche administrative · Délais d'instruction · Surface de plancher · Seuil architecte · Taxe d'aménagement · Zone PLU · Réglementation d'urbanisme · Loi Littoral · PADDUC · Risques naturels · Aides financières · MaPrimeRénov' · Photovoltaïque · Fourchette de coût au m²",
-      details: "Tout type de projet : Construction · Rénovation · Extension · Annexe · Habitat léger · Agricole · Commercial · Changement de destination · Aménagement. Tous les profils : Propriétaire · Futur acquéreur · Mandataire · Héritier · Investisseur. Tout le territoire français.",
-      note: "L'outil structure. Mon analyse oriente. Vous repartez avec un PDF clair et un projet cadré.",
-      features: ["Analyse complète", "PDF détaillé", "Tout territoire"],
+      desc: "V\u00e9rification compl\u00e8te des contraintes r\u00e9glementaires avec compte-rendu PDF d\u00e9taill\u00e9.",
+      details: "Ce qu'on analyse ensemble : Formalit\u00e9 exacte \u00b7 D\u00e9marche administrative \u00b7 D\u00e9lais d'instruction \u00b7 Surface de plancher \u00b7 Seuil architecte \u00b7 Taxe d'am\u00e9nagement \u00b7 Zone PLU \u00b7 R\u00e9glementation d'urbanisme \u00b7 Loi Littoral \u00b7 PADDUC \u00b7 Risques naturels \u00b7 Aides financi\u00e8res \u00b7 MaPrimeR\u00e9nov' \u00b7 Photovolta\u00efque \u00b7 Fourchette de co\u00fbt au m\u00b2",
+      detailsExtra: "Tout type de projet : Construction \u00b7 R\u00e9novation \u00b7 Extension \u00b7 Annexe \u00b7 Habitat l\u00e9ger \u00b7 Agricole \u00b7 Commercial \u00b7 Changement de destination \u00b7 Am\u00e9nagement. Tous les profils : Propri\u00e9taire \u00b7 Futur acqu\u00e9reur \u00b7 Mandataire \u00b7 H\u00e9ritier \u00b7 Investisseur. Tout le territoire fran\u00e7ais.",
+      detailsNote: "L'outil structure. Mon analyse oriente. Vous repartez avec un PDF clair et un projet cadr\u00e9.",
+      features: ["Analyse compl\u00e8te", "PDF d\u00e9taill\u00e9", "Tout territoire"],
       action: "Commander",
       link: STRIPE_LINKS.consultationAplomb,
-      external: true,
-      expanded: true
+      external: true
     },
     { 
       title: "Mission", 
@@ -721,7 +520,7 @@ const ProcessSection = () => {
       color: "#8D6B50",
       desc: "Accompagnement complet jusqu'au permis : visuels 3D, dossiers administratifs, coordination des intervenants, estimatif sommaire des travaux.",
       features: ["Visuels 3D", "Dossier permis", "Coordination"],
-      action: "Démarrer",
+      action: "D\u00e9marrer",
       link: STRIPE_LINKS.acompteMission,
       external: true
     }
@@ -729,13 +528,12 @@ const ProcessSection = () => {
 
   return (
     <section id="services" className="section-padding bg-[#FAFAFA] relative overflow-hidden" data-testid="services-section">
-      <RelaxingAnimation />
       <div className="max-w-6xl mx-auto relative z-10">
         <AnimatedSection className="text-center mb-12">
           <span className="label-elegant">Nos prestations</span>
-          <h2 className="font-heading text-2xl md:text-3xl font-light mt-4">À la carte ou en mission complète</h2>
+          <h2 className="font-heading text-2xl md:text-3xl font-light mt-4">\u00c0 la carte ou en mission compl\u00e8te</h2>
           <p className="font-body text-sm text-[#595959] mt-4 max-w-xl mx-auto">
-            Chaque service est indépendant. Les achats sont déduits en cas de mission complète.
+            Chaque service est ind\u00e9pendant. Les achats sont d\u00e9duits en cas de mission compl\u00e8te.
           </p>
         </AnimatedSection>
 
@@ -771,6 +569,7 @@ const ProcessSection = () => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.5 }}
               className="bg-white p-6 border border-[#E6DED5] hover:border-[#C5A880] transition-all hover:shadow-lg flex flex-col"
+              data-testid={`process-card-${index}`}
             >
               <div className="flex items-center justify-between mb-3">
                 <h4 className="font-heading text-lg font-semibold">{service.title}</h4>
@@ -781,10 +580,36 @@ const ProcessSection = () => {
                   {service.tag}
                 </span>
               </div>
-              <p className="font-body text-sm text-[#595959] mb-4 leading-relaxed flex-grow">{service.desc}</p>
+              <p className="font-body text-sm text-[#595959] mb-4 leading-relaxed">{service.desc}</p>
+              
+              {/* Expandable details for Aplomb */}
+              {service.details && (
+                <div className="mb-4">
+                  <button
+                    onClick={() => setExpandedCard(expandedCard === index ? null : index)}
+                    className="text-xs text-[#C5A880] hover:text-[#B3956D] font-medium flex items-center gap-1 transition-colors"
+                    data-testid="aplomb-details-toggle"
+                  >
+                    {expandedCard === index ? "Masquer les d\u00e9tails" : "Voir tous les d\u00e9tails"}
+                    <ChevronRight size={14} className={`transition-transform ${expandedCard === index ? 'rotate-90' : ''}`} />
+                  </button>
+                  {expandedCard === index && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="mt-3 space-y-2 border-t border-[#E6DED5] pt-3"
+                    >
+                      <p className="text-xs text-[#595959] leading-relaxed">{service.details}</p>
+                      <p className="text-xs text-[#595959] leading-relaxed">{service.detailsExtra}</p>
+                      <p className="text-xs text-[#C5A880] italic leading-relaxed">{service.detailsNote}</p>
+                    </motion.div>
+                  )}
+                </div>
+              )}
               
               {/* Features list */}
-              <div className="flex flex-wrap gap-1 mb-4">
+              <div className="flex flex-wrap gap-1 mb-4 mt-auto">
                 {service.features.map((feature, i) => (
                   <span key={i} className="text-xs bg-[#F3F2F0] text-[#8A8A8A] px-2 py-1 rounded">
                     {feature}
@@ -798,6 +623,7 @@ const ProcessSection = () => {
                 rel={service.external ? "noopener noreferrer" : undefined}
                 className="inline-flex items-center justify-center gap-2 text-sm font-medium text-white py-2 px-4 rounded transition-all hover:opacity-90"
                 style={{ backgroundColor: service.color }}
+                data-testid={`process-action-${index}`}
               >
                 {service.action}
                 <ExternalLink size={14} />
@@ -851,12 +677,12 @@ const SkyBannerSection = () => {
     <section className="relative h-64 md:h-80 overflow-hidden" data-testid="sky-banner">
       <img 
         src={ASSETS.skyBanner} 
-        alt="Ciel et liberté"
+        alt="Ciel et libert\u00e9"
         className="w-full h-full object-cover"
       />
-      <div className="absolute inset-0 flex items-start justify-center pt-8">
-        <p className="font-heading text-xl md:text-2xl text-white italic bg-black/40 px-8 py-3 rounded tracking-[0.25em]">
-          Vos projets méritent de prendre leur envol
+      <div className="absolute inset-0 flex items-end justify-center pb-10">
+        <p className="font-heading text-2xl md:text-4xl text-white font-light tracking-[0.3em] md:tracking-[0.5em] uppercase" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.4)' }}>
+          Vos projets m\u00e9ritent de prendre leur envol
         </p>
       </div>
     </section>
@@ -979,7 +805,7 @@ const PortfolioSection = () => {
             <motion.div
               key={index}
               variants={fadeInUp}
-              className="relative overflow-hidden bg-white cursor-pointer aspect-[4/3]"
+              className="relative overflow-hidden bg-white cursor-pointer aspect-[4/3] shadow-md hover:shadow-xl rounded-sm"
               data-testid={`portfolio-item-${index}`}
               onClick={() => setSelectedIndex(index)}
             >
@@ -1253,12 +1079,165 @@ const FAQSection = () => {
   );
 };
 
+// Devis Form Component
+const DevisForm = () => {
+  const [formData, setFormData] = useState({
+    nom: '', email: '', telephone: '', type_projet: '', description: '', localisation: '', budget: ''
+  });
+  const [status, setStatus] = useState(null); // null | 'sending' | 'success' | 'error'
+
+  const API_URL = process.env.REACT_APP_BACKEND_URL;
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus('sending');
+    try {
+      const res = await fetch(`${API_URL}/api/devis`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+      if (res.ok) {
+        setStatus('success');
+        setFormData({ nom: '', email: '', telephone: '', type_projet: '', description: '', localisation: '', budget: '' });
+      } else {
+        setStatus('error');
+      }
+    } catch {
+      setStatus('error');
+    }
+  };
+
+  const handleChange = (e) => {
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const projectTypes = [
+    "Construction neuve",
+    "R\u00e9novation",
+    "Extension",
+    "Permis de construire",
+    "D\u00e9claration pr\u00e9alable",
+    "Am\u00e9nagement",
+    "Autre"
+  ];
+
+  if (status === 'success') {
+    return (
+      <div className="card-elegant p-8 text-center" data-testid="devis-success">
+        <CheckCircle2 size={40} className="text-[#C5A880] mx-auto mb-4" />
+        <h4 className="font-heading text-xl font-semibold mb-2">Demande envoy\u00e9e</h4>
+        <p className="font-body text-sm text-[#595959]">
+          Merci ! Nous reviendrons vers vous dans les meilleurs d\u00e9lais.
+        </p>
+        <button 
+          onClick={() => setStatus(null)}
+          className="btn-secondary mt-4 text-xs"
+        >
+          Nouvelle demande
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="card-elegant p-6 md:p-8" data-testid="devis-form">
+      <h4 className="font-heading text-xl font-semibold mb-1">Demande de devis</h4>
+      <p className="font-body text-xs text-[#8A8A8A] mb-5">D\u00e9crivez votre projet, nous vous recontactons.</p>
+      
+      <div className="space-y-3">
+        <div className="grid grid-cols-2 gap-3">
+          <input
+            name="nom"
+            value={formData.nom}
+            onChange={handleChange}
+            placeholder="Nom *"
+            required
+            className="w-full px-3 py-2 text-sm border border-[#E6DED5] bg-[#FAFAFA] focus:border-[#C5A880] focus:outline-none transition-colors font-body"
+            data-testid="devis-nom"
+          />
+          <input
+            name="email"
+            type="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="Email *"
+            required
+            className="w-full px-3 py-2 text-sm border border-[#E6DED5] bg-[#FAFAFA] focus:border-[#C5A880] focus:outline-none transition-colors font-body"
+            data-testid="devis-email"
+          />
+        </div>
+        <div className="grid grid-cols-2 gap-3">
+          <input
+            name="telephone"
+            value={formData.telephone}
+            onChange={handleChange}
+            placeholder="T\u00e9l\u00e9phone"
+            className="w-full px-3 py-2 text-sm border border-[#E6DED5] bg-[#FAFAFA] focus:border-[#C5A880] focus:outline-none transition-colors font-body"
+            data-testid="devis-telephone"
+          />
+          <select
+            name="type_projet"
+            value={formData.type_projet}
+            onChange={handleChange}
+            required
+            className="w-full px-3 py-2 text-sm border border-[#E6DED5] bg-[#FAFAFA] focus:border-[#C5A880] focus:outline-none transition-colors font-body text-[#595959]"
+            data-testid="devis-type"
+          >
+            <option value="">Type de projet *</option>
+            {projectTypes.map(t => <option key={t} value={t}>{t}</option>)}
+          </select>
+        </div>
+        <input
+          name="localisation"
+          value={formData.localisation}
+          onChange={handleChange}
+          placeholder="Localisation du projet"
+          className="w-full px-3 py-2 text-sm border border-[#E6DED5] bg-[#FAFAFA] focus:border-[#C5A880] focus:outline-none transition-colors font-body"
+          data-testid="devis-localisation"
+        />
+        <textarea
+          name="description"
+          value={formData.description}
+          onChange={handleChange}
+          placeholder="D\u00e9crivez votre projet en d\u00e9tail... *"
+          required
+          rows={4}
+          className="w-full px-3 py-2 text-sm border border-[#E6DED5] bg-[#FAFAFA] focus:border-[#C5A880] focus:outline-none transition-colors font-body resize-none"
+          data-testid="devis-description"
+        />
+        <input
+          name="budget"
+          value={formData.budget}
+          onChange={handleChange}
+          placeholder="Budget estimatif (facultatif)"
+          className="w-full px-3 py-2 text-sm border border-[#E6DED5] bg-[#FAFAFA] focus:border-[#C5A880] focus:outline-none transition-colors font-body"
+          data-testid="devis-budget"
+        />
+      </div>
+
+      <button
+        type="submit"
+        disabled={status === 'sending'}
+        className="btn-primary w-full mt-5 inline-flex items-center justify-center gap-2"
+        data-testid="devis-submit"
+      >
+        {status === 'sending' ? 'Envoi en cours...' : 'Envoyer ma demande'}
+        {status !== 'sending' && <ArrowRight size={16} />}
+      </button>
+      {status === 'error' && (
+        <p className="text-xs text-red-500 mt-2 text-center">Erreur lors de l'envoi. R\u00e9essayez ou contactez-nous directement.</p>
+      )}
+    </form>
+  );
+};
+
 // Contact Section
 const ContactSection = () => {
   return (
     <section id="contact" className="contact-section section-padding" data-testid="contact-section">
       <div className="max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-12 items-start">
           <AnimatedSection>
             <span className="label-elegant">Contact</span>
             <h2 className="font-heading text-3xl md:text-4xl font-light mt-4 mb-6">Prenons contact</h2>
@@ -1312,22 +1291,8 @@ const ContactSection = () => {
             </div>
           </AnimatedSection>
 
-          <AnimatedSection className="hidden md:block">
-            <div className="card-elegant p-8">
-              <h4 className="font-heading text-xl font-semibold mb-4">Prêt à démarrer ?</h4>
-              <p className="font-body text-[#595959] mb-6">
-                Contactez-nous directement par téléphone ou email pour discuter de vos besoins. 
-                Nous vous répondrons dans les meilleurs délais.
-              </p>
-              <a 
-                href="#paiement" 
-                className="btn-primary inline-flex items-center gap-2"
-                data-testid="contact-cta"
-              >
-                Réserver une consultation
-                <ArrowRight size={18} />
-              </a>
-            </div>
+          <AnimatedSection>
+            <DevisForm />
           </AnimatedSection>
         </div>
       </div>
@@ -1579,12 +1544,12 @@ function App() {
         <AboutSection />
         <ProcessSection />
         <TestimonialsSection />
-        <SkyBannerSection />
         <PortfolioSection />
         <ReferentsSection />
         <TerroirSection />
         <FAQSection />
         <ContactSection />
+        <SkyBannerSection />
       </main>
       <Footer />
       <AccessibilityWidget />
