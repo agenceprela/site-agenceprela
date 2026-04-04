@@ -485,9 +485,9 @@ const ProcessSection = () => {
       title: "Jalon", 
       tag: "Gratuit",
       color: "#C5A880",
-      desc: "Clarifiez votre projet en 5 minutes. Identifiez vos besoins, contraintes et priorit\u00e9s. Obtenez une synth\u00e8se claire pour d\u00e9marrer sereinement.",
-      features: ["5 min", "Sans engagement", "Synth\u00e8se PDF"],
-      action: "Acc\u00e9der",
+      desc: "Clarifiez votre projet en 5 minutes. Identifiez vos besoins, contraintes et priorités. Obtenez une synthèse claire pour démarrer sereinement.",
+      features: ["5 min", "Sans engagement", "Synthèse PDF"],
+      action: "Accéder",
       link: "https://fanciful-toffee-243ec4.netlify.app/",
       external: true
     },
@@ -495,9 +495,9 @@ const ProcessSection = () => {
       title: "Consultation", 
       tag: "120 €",
       color: "#B3956D",
-      desc: "\u00c9change personnalis\u00e9 d'1 heure. Analysez votre projet, cadrez la strat\u00e9gie et recevez des orientations concr\u00e8tes adapt\u00e9es \u00e0 votre situation.",
-      features: ["1h visio/tel", "Conseils personnalis\u00e9s", "Suivi par mail"],
-      action: "R\u00e9server",
+      desc: "Échange personnalisé d'1 heure. Analysez votre projet, cadrez la stratégie et recevez des orientations concrètes adaptées à votre situation.",
+      features: ["1h visio/tel", "Conseils personnalisés", "Suivi par mail"],
+      action: "Réserver",
       link: STRIPE_LINKS.consultation1h,
       external: true
     },
@@ -505,11 +505,11 @@ const ProcessSection = () => {
       title: "Aplomb", 
       tag: "149 €",
       color: "#A08060",
-      desc: "V\u00e9rification compl\u00e8te des contraintes r\u00e9glementaires avec compte-rendu PDF d\u00e9taill\u00e9.",
-      details: "Ce qu'on analyse ensemble : Formalit\u00e9 exacte \u00b7 D\u00e9marche administrative \u00b7 D\u00e9lais d'instruction \u00b7 Surface de plancher \u00b7 Seuil architecte \u00b7 Taxe d'am\u00e9nagement \u00b7 Zone PLU \u00b7 R\u00e9glementation d'urbanisme \u00b7 Loi Littoral \u00b7 PADDUC \u00b7 Risques naturels \u00b7 Aides financi\u00e8res \u00b7 MaPrimeR\u00e9nov' \u00b7 Photovolta\u00efque \u00b7 Fourchette de co\u00fbt au m\u00b2",
-      detailsExtra: "Tout type de projet : Construction \u00b7 R\u00e9novation \u00b7 Extension \u00b7 Annexe \u00b7 Habitat l\u00e9ger \u00b7 Agricole \u00b7 Commercial \u00b7 Changement de destination \u00b7 Am\u00e9nagement. Tous les profils : Propri\u00e9taire \u00b7 Futur acqu\u00e9reur \u00b7 Mandataire \u00b7 H\u00e9ritier \u00b7 Investisseur. Tout le territoire fran\u00e7ais.",
-      detailsNote: "L'outil structure. Mon analyse oriente. Vous repartez avec un PDF clair et un projet cadr\u00e9.",
-      features: ["Analyse compl\u00e8te", "PDF d\u00e9taill\u00e9", "Tout territoire"],
+      desc: "Vérification complète des contraintes réglementaires avec compte-rendu PDF détaillé.",
+      details: "Ce qu'on analyse ensemble : Formalité exacte · Démarche administrative · Délais d'instruction · Surface de plancher · Seuil architecte · Taxe d'aménagement · Zone PLU · Réglementation d'urbanisme · Loi Littoral · PADDUC · Risques naturels · Aides financières · MaPrimeRénov' · Photovoltaïque · Fourchette de coût au m²",
+      detailsExtra: "Tout type de projet : Construction · Rénovation · Extension · Annexe · Habitat léger · Agricole · Commercial · Changement de destination · Aménagement. Tous les profils : Propriétaire · Futur acquéreur · Mandataire · Héritier · Investisseur. Tout le territoire français.",
+      detailsNote: "L'outil structure. Mon analyse oriente. Vous repartez avec un PDF clair et un projet cadré.",
+      features: ["Analyse complète", "PDF détaillé", "Tout territoire"],
       action: "Commander",
       link: STRIPE_LINKS.consultationAplomb,
       external: true
@@ -520,7 +520,7 @@ const ProcessSection = () => {
       color: "#8D6B50",
       desc: "Accompagnement complet jusqu'au permis : visuels 3D, dossiers administratifs, coordination des intervenants, estimatif sommaire des travaux.",
       features: ["Visuels 3D", "Dossier permis", "Coordination"],
-      action: "D\u00e9marrer",
+      action: "Démarrer",
       link: STRIPE_LINKS.acompteMission,
       external: true
     }
@@ -531,9 +531,9 @@ const ProcessSection = () => {
       <div className="max-w-6xl mx-auto relative z-10">
         <AnimatedSection className="text-center mb-12">
           <span className="label-elegant">Nos prestations</span>
-          <h2 className="font-heading text-2xl md:text-3xl font-light mt-4">\u00c0 la carte ou en mission compl\u00e8te</h2>
+          <h2 className="font-heading text-2xl md:text-3xl font-light mt-4">À la carte ou en mission complète</h2>
           <p className="font-body text-sm text-[#595959] mt-4 max-w-xl mx-auto">
-            Chaque service est ind\u00e9pendant. Les achats sont d\u00e9duits en cas de mission compl\u00e8te.
+            Chaque service est indépendant. Les achats sont déduits en cas de mission complète.
           </p>
         </AnimatedSection>
 
@@ -590,7 +590,7 @@ const ProcessSection = () => {
                     className="text-xs text-[#C5A880] hover:text-[#B3956D] font-medium flex items-center gap-1 transition-colors"
                     data-testid="aplomb-details-toggle"
                   >
-                    {expandedCard === index ? "Masquer les d\u00e9tails" : "Voir tous les d\u00e9tails"}
+                    {expandedCard === index ? "Masquer les détails" : "Voir tous les détails"}
                     <ChevronRight size={14} className={`transition-transform ${expandedCard === index ? 'rotate-90' : ''}`} />
                   </button>
                   {expandedCard === index && (
@@ -677,12 +677,12 @@ const SkyBannerSection = () => {
     <section className="relative h-64 md:h-80 overflow-hidden" data-testid="sky-banner">
       <img 
         src={ASSETS.skyBanner} 
-        alt="Ciel et libert\u00e9"
+        alt="Ciel et liberté"
         className="w-full h-full object-cover"
       />
       <div className="absolute inset-0 flex items-end justify-center pb-10">
         <p className="font-heading text-2xl md:text-4xl text-white font-light tracking-[0.3em] md:tracking-[0.5em] uppercase" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.4)' }}>
-          Vos projets m\u00e9ritent de prendre leur envol
+          Vos projets méritent de prendre leur envol
         </p>
       </div>
     </section>
@@ -1114,11 +1114,11 @@ const DevisForm = () => {
 
   const projectTypes = [
     "Construction neuve",
-    "R\u00e9novation",
+    "Rénovation",
     "Extension",
     "Permis de construire",
-    "D\u00e9claration pr\u00e9alable",
-    "Am\u00e9nagement",
+    "Déclaration préalable",
+    "Aménagement",
     "Autre"
   ];
 
@@ -1126,9 +1126,9 @@ const DevisForm = () => {
     return (
       <div className="card-elegant p-8 text-center" data-testid="devis-success">
         <CheckCircle2 size={40} className="text-[#C5A880] mx-auto mb-4" />
-        <h4 className="font-heading text-xl font-semibold mb-2">Demande envoy\u00e9e</h4>
+        <h4 className="font-heading text-xl font-semibold mb-2">Demande envoyée</h4>
         <p className="font-body text-sm text-[#595959]">
-          Merci ! Nous reviendrons vers vous dans les meilleurs d\u00e9lais.
+          Merci ! Nous reviendrons vers vous dans les meilleurs délais.
         </p>
         <button 
           onClick={() => setStatus(null)}
@@ -1143,7 +1143,7 @@ const DevisForm = () => {
   return (
     <form onSubmit={handleSubmit} className="card-elegant p-6 md:p-8" data-testid="devis-form">
       <h4 className="font-heading text-xl font-semibold mb-1">Demande de devis</h4>
-      <p className="font-body text-xs text-[#8A8A8A] mb-5">D\u00e9crivez votre projet, nous vous recontactons.</p>
+      <p className="font-body text-xs text-[#8A8A8A] mb-5">Décrivez votre projet, nous vous recontactons.</p>
       
       <div className="space-y-3">
         <div className="grid grid-cols-2 gap-3">
@@ -1172,7 +1172,7 @@ const DevisForm = () => {
             name="telephone"
             value={formData.telephone}
             onChange={handleChange}
-            placeholder="T\u00e9l\u00e9phone"
+            placeholder="Téléphone"
             className="w-full px-3 py-2 text-sm border border-[#E6DED5] bg-[#FAFAFA] focus:border-[#C5A880] focus:outline-none transition-colors font-body"
             data-testid="devis-telephone"
           />
@@ -1200,7 +1200,7 @@ const DevisForm = () => {
           name="description"
           value={formData.description}
           onChange={handleChange}
-          placeholder="D\u00e9crivez votre projet en d\u00e9tail... *"
+          placeholder="Décrivez votre projet en détail... *"
           required
           rows={4}
           className="w-full px-3 py-2 text-sm border border-[#E6DED5] bg-[#FAFAFA] focus:border-[#C5A880] focus:outline-none transition-colors font-body resize-none"
@@ -1226,7 +1226,7 @@ const DevisForm = () => {
         {status !== 'sending' && <ArrowRight size={16} />}
       </button>
       {status === 'error' && (
-        <p className="text-xs text-red-500 mt-2 text-center">Erreur lors de l'envoi. R\u00e9essayez ou contactez-nous directement.</p>
+        <p className="text-xs text-red-500 mt-2 text-center">Erreur lors de l'envoi. Réessayez ou contactez-nous directement.</p>
       )}
     </form>
   );
