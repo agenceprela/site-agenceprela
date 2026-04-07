@@ -44,7 +44,8 @@ const ASSETS = {
     "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/sithft8j_EXTENSION.png",
     "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/xp04tq1m_Gemini_Generated_Image_ppghs3ppghs3ppgh%281%29.png",
     "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/p8lk95yu_4%20lots.jpg",
-    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/fu6yknga_projet%20de%20construction.jpg"
+    "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/fu6yknga_projet%20de%20construction.jpg",
+    "/restanque_portfolio.jpg"
   ],
   decorative: [
     "https://customer-assets.emergentagent.com/job_aplomb-preview/artifacts/tan7j60y_466158579_9042680795751135_8232406991835141836_n.jpg",
@@ -790,7 +791,11 @@ const PortfolioSection = () => {
               "Étude de faisabilité rénovation bâtiment ancien",
               "Dossier déclaration préalable de travaux",
               "Visuels 3D projet construction neuve",
-              "Accompagnement administratif permis de construire"
+              "Accompagnement administratif permis de construire",
+              "Aménagement extérieur et paysager",
+              "Lotissement 4 lots division parcellaire",
+              "Projet de construction neuve accompagnement complet",
+              "Projet Restanque transformation terrain en espace bien-être piscine"
             ];
             return (
             <motion.div
