@@ -451,13 +451,22 @@ const AboutSection = () => {
                   Diplômée "dessinatrice en bâtiment option dessin de projet" en 2008, j'ai fondé l'Agence Prela en 2009, portée par l'envie concrète de faire de cette reconversion un accomplissement personnel.
                 </p>
                 <p>
+                  Apprendre chaque jour est un lot passionnant, au contact des artisans, des experts du bâti ancien, des éco‑constructeurs et de celles et ceux qui imaginent les espaces avec justesse.
+                </p>
+                <p>
                   Ce qui me guide, c'est le plaisir de vous proposer des solutions adaptées, vous permettre d'aboutir avec succès, en tenant compte de chaque paramètre.
+                </p>
+                <p>
+                  Au fil des années, j'ai mis au point des outils et des méthodes pour mieux comprendre vos besoins, les règles à suivre, et anticiper les aides ou taxes liées à chaque projet.
                 </p>
                 <p>
                   Mes forces sont simples : <strong>l'écoute, la sensibilité et la réactivité</strong>, appuyées par une expérience riche et un usage précis de chaque savoir‑faire.
                 </p>
                 <p>
-                  Mon réseau indépendant rassemble référents de chantier, artisans, architectes, ingénieurs et consultants bioclimatiques, qui prennent le relai selon les besoins et vos choix.
+                  Je propose des consultations courtes, des missions ciblées ou un accompagnement complet jusqu'aux démarches administratives.
+                </p>
+                <p>
+                  Mon réseau indépendant rassemble référents de chantier, artisans, architectes, ingénieurs et consultants bioclimatiques, recommandés uniquement si votre projet le nécessite, selon vos besoins et vos choix.
                 </p>
                 <p className="font-semibold text-[#C5A880]">
                   Basée en Corse et en Périgord Pourpre, je vous accompagne ici, là‑bas, et au‑delà.
