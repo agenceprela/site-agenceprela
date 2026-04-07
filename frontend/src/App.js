@@ -419,39 +419,42 @@ const HeroSection = () => {
 
 // About Section
 const AboutSection = () => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   return (
     <section id="apropos" className="section-padding bg-[#FAFAFA]" data-testid="about-section">
       <div className="max-w-4xl mx-auto">
-        <AnimatedSection className="text-center mb-12">
-          <span className="label-elegant">À propos</span>
-          <h2 className="font-heading text-3xl md:text-4xl font-light mt-4">Rendre possible</h2>
-          <div className="separator mx-auto mt-6" />
+        <AnimatedSection className="text-center">
+          <p className="font-heading text-lg text-[#1C1C1C] italic">
+            « Pour ce qui est de l'avenir, il ne s'agit pas de le prévoir mais de le rendre possible. »
+            <span className="block text-sm text-[#C5A880] mt-1">— Antoine de Saint-Exupéry</span>
+          </p>
+          <button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="mt-6 text-sm text-[#C5A880] hover:text-[#B3956D] font-body inline-flex items-center gap-1 transition-colors"
+            data-testid="about-toggle"
+          >
+            {isExpanded ? "Masquer" : "En savoir plus sur l'agence"}
+            <ChevronRight size={14} className={`transition-transform ${isExpanded ? 'rotate-90' : ''}`} />
+          </button>
         </AnimatedSection>
 
-        <AnimatedSection>
-          <div className="card-elegant p-8 md:p-12">
-              <div className="font-body text-[#595959] leading-relaxed space-y-4">
-                <p className="font-heading text-xl text-[#1C1C1C] italic text-center mb-6">
-                  « Pour ce qui est de l'avenir, il ne s'agit pas de le prévoir mais de le rendre possible. »
-                  <span className="block text-sm text-[#C5A880] mt-2">— Antoine de Saint-Exupéry</span>
-                </p>
+        {isExpanded && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            className="mt-6"
+          >
+            <div className="card-elegant p-8 md:p-10">
+              <div className="font-body text-sm text-[#595959] leading-relaxed space-y-3">
                 <p>
                   Diplômée "dessinatrice en bâtiment option dessin de projet" en 2008, j'ai fondé l'Agence Prela en 2009, portée par l'envie concrète de faire de cette reconversion un accomplissement personnel.
-                </p>
-                <p>
-                  Apprendre chaque jour est un lot passionnant, au contact des artisans, des experts du bâti ancien, des éco‑constructeurs et de celles et ceux qui imaginent les espaces avec justesse.
                 </p>
                 <p>
                   Ce qui me guide, c'est le plaisir de vous proposer des solutions adaptées, vous permettre d'aboutir avec succès, en tenant compte de chaque paramètre.
                 </p>
                 <p>
-                  Au fil des années, j'ai mis au point des outils et des méthodes pour mieux comprendre vos besoins, les règles à suivre, et anticiper les aides ou taxes liées à chaque projet.
-                </p>
-                <p>
                   Mes forces sont simples : <strong>l'écoute, la sensibilité et la réactivité</strong>, appuyées par une expérience riche et un usage précis de chaque savoir‑faire.
-                </p>
-                <p>
-                  Je propose des consultations courtes, des missions ciblées ou un accompagnement complet jusqu'aux démarches administratives.
                 </p>
                 <p>
                   Mon réseau indépendant rassemble référents de chantier, artisans, architectes, ingénieurs et consultants bioclimatiques, qui prennent le relai selon les besoins et vos choix.
@@ -460,8 +463,9 @@ const AboutSection = () => {
                   Basée en Corse et en Périgord Pourpre, je vous accompagne ici, là‑bas, et au‑delà.
                 </p>
               </div>
-          </div>
-        </AnimatedSection>
+            </div>
+          </motion.div>
+        )}
       </div>
     </section>
   );
@@ -941,23 +945,17 @@ const ReferentsSection = () => {
   );
 };
 
-// Terroir Section - Decorative images
+// Terroir Section - Decorative images (photos only, no title)
 const TerroirSection = () => {
   return (
-    <section className="py-16 bg-[#FAFAFA]" data-testid="terroir-section">
+    <section className="py-8 bg-[#FAFAFA]" data-testid="terroir-section">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <AnimatedSection className="text-center mb-12">
-          <span className="label-elegant">Nos territoires</span>
-          <h2 className="font-heading text-2xl md:text-3xl font-light mt-4">Corse & Périgord Pourpre</h2>
-          <div className="separator mx-auto mt-6" />
-        </AnimatedSection>
-
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={staggerContainer}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4"
+          className="grid grid-cols-4 gap-3"
         >
           {ASSETS.decorative.map((image, index) => (
             <motion.div
@@ -1518,7 +1516,6 @@ function App() {
         <TerroirSection />
         <FAQSection />
         <ContactSection />
-        <SkyBannerSection />
       </main>
       <Footer />
       <AccessibilityWidget />
