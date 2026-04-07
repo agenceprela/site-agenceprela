@@ -535,7 +535,7 @@ const ProcessSection = () => {
       <div className="max-w-6xl mx-auto relative z-10">
         <AnimatedSection className="text-center mb-12">
           <span className="label-elegant">Nos prestations</span>
-          <h2 className="font-heading text-2xl md:text-3xl font-light mt-4">À la carte ou en mission complète</h2>
+          <h2 className="font-heading text-2xl md:text-3xl font-light mt-4">Nos prestations, à la carte ou en mission complète</h2>
           <p className="font-body text-sm text-[#595959] mt-4 max-w-xl mx-auto">
             Chaque service est indépendant. Les achats sont déduits en cas de mission complète.
           </p>
@@ -772,7 +772,7 @@ const PortfolioSection = () => {
       <div className="max-w-7xl mx-auto">
         <AnimatedSection className="text-center mb-12">
           <span className="label-elegant">Réalisations</span>
-          <h2 className="font-heading text-3xl md:text-4xl font-light mt-4">Portfolio</h2>
+          <h2 className="font-heading text-3xl md:text-4xl font-light mt-4">Réalisations et projets accompagnés</h2>
           <div className="separator mx-auto mt-6" />
         </AnimatedSection>
 
@@ -783,7 +783,16 @@ const PortfolioSection = () => {
           variants={staggerContainer}
           className="grid grid-cols-2 md:grid-cols-3 gap-3"
         >
-          {ASSETS.portfolio.map((image, index) => (
+          {ASSETS.portfolio.map((image, index) => {
+            const portfolioAlts = [
+              "Projet permis de construire maison individuelle",
+              "Plan avant-projet extension habitation",
+              "Étude de faisabilité rénovation bâtiment ancien",
+              "Dossier déclaration préalable de travaux",
+              "Visuels 3D projet construction neuve",
+              "Accompagnement administratif permis de construire"
+            ];
+            return (
             <motion.div
               key={index}
               variants={fadeInUp}
@@ -793,12 +802,13 @@ const PortfolioSection = () => {
             >
               <img 
                 src={image} 
-                alt={`Projet ${index + 1}`}
+                alt={portfolioAlts[index] || `Réalisation Agence Prela projet ${index + 1}`}
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 loading="lazy"
               />
             </motion.div>
-          ))}
+            );
+          })}
         </motion.div>
       </div>
 
@@ -966,7 +976,14 @@ const TerroirSection = () => {
           variants={staggerContainer}
           className="grid grid-cols-4 gap-3"
         >
-          {ASSETS.decorative.map((image, index) => (
+          {ASSETS.decorative.map((image, index) => {
+            const terroirAlts = [
+              "Lauzes dorées pierre traditionnelle Périgord",
+              "Pierre granite Corse matériaux construction",
+              "Paysage olivier Corse architecture méditerranéenne",
+              "Jasmin fleurs Périgord Pourpre Dordogne"
+            ];
+            return (
             <motion.div
               key={index}
               variants={fadeInUp}
@@ -974,12 +991,13 @@ const TerroirSection = () => {
             >
               <img 
                 src={image} 
-                alt={`Territoire ${index + 1}`}
+                alt={terroirAlts[index] || `Territoire Agence Prela ${index + 1}`}
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 loading="lazy"
               />
             </motion.div>
-          ))}
+            );
+          })}
         </motion.div>
       </div>
     </section>
@@ -1018,7 +1036,7 @@ const FAQSection = () => {
       <div className="max-w-3xl mx-auto">
         <AnimatedSection className="text-center mb-12">
           <span className="label-elegant">Questions fréquentes</span>
-          <h2 className="font-heading text-2xl md:text-3xl font-light mt-4">FAQ</h2>
+          <h2 className="font-heading text-2xl md:text-3xl font-light mt-4">Questions fréquentes sur nos services</h2>
           <div className="separator mx-auto mt-6" />
         </AnimatedSection>
 
